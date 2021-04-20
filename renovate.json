@@ -1,30 +1,26 @@
 {
-    "assignees": [
-      "@michaelmcleroy"
-    ],
-    "baseBranches": [
-      "master"
-    ],
-    "regexManagers": [
-      {
-        "fileMatch": [
-          "^values.yaml$"
-        ],
-        "matchStrings": [
-          "org\\.opencontainers\\.image\\.version:\\s+\"(?<currentValue>.+?)\""
-        ],
-        "depNameTemplate": "Cisco-Talos/clamav-devel",
-        "datasourceTemplate": "github-releases"
-      },
-      {
-        "fileMatch": [
-          "^values.yaml$"
-        ],
-        "matchStrings": [
-          "tags:\\s+-\\s+\"(?<currentValue>.+?)\""
-        ],
-        "depNameTemplate": "Cisco-Talos/clamav-devel",
-        "datasourceTemplate": "github-releases"
-      }
-    ]
+  "assignees": ["@michaelmcleroy"],
+  "baseBranches": ["master"],
+  "regexManagers": [
+    {
+      "fileMatch": [
+        "^values.yaml$"
+      ],
+      "matchStrings": [
+        "org\\.opencontainers\\.image\\.version:\\s+\"(?<currentValue>.+?)\""
+      ],
+      "depNameTemplate": "Cisco-Talos/clamav-devel",
+      "datasourceTemplate": "github-releases"
+    },
+    {
+      "fileMatch": [
+        "^values.yaml$"
+      ],
+      "matchStrings": [
+        "tags:\\s+-\\s+\"(?<currentValue>.+?)\""
+      ],
+      "depNameTemplate": "Cisco-Talos/clamav-devel",
+      "datasourceTemplate": "github-releases"
+    }
+  ]
 }

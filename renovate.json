@@ -9,7 +9,7 @@
       "matchStrings": [
         "org\\.opencontainers\\.image\\.version:\\s+\"(?<currentValue>.+?)\""
       ],
-      "depNameTemplate": "Cisco-Talos/clamav-devel",
+      "depNameTemplate": "Cisco-Talos/clamav-devel/",
       "datasourceTemplate": "github-releases"
     },
     {
@@ -19,7 +19,7 @@
       "matchStrings": [
         "tags:\\s+-\\s+\"(?<currentValue>.+?)\""
       ],
-      "depNameTemplate": "Cisco-Talos/clamav-devel",
+      "depNameTemplate": "Cisco-Talos/clamav-devel/releases",
       "datasourceTemplate": "github-releases"
     }
   ]

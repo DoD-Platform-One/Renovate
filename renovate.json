@@ -3,12 +3,11 @@
   "baseBranches": ["master"],
   "packageRules": [
     {
-      "datasources": ["docker"],
-      "packageNames": ["registry1.dso.mil/ironbank/opensource/istio-1.8/proxyv2"],
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["registry1.dso.mil/ironbank/opensource/istio-1.8/proxyv2"],
       "major": {
         "enabled": true
-      },
-      "matchDatasources": ["docker"]
+      }
     }
   ],
   "regexManagers": [

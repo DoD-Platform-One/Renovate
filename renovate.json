@@ -1,6 +1,15 @@
 {
   "assignees": ["@michaelmcleroy"],
   "baseBranches": ["master"],
+  "packageRules": [
+    {
+      "datasources": ["docker"],
+      "packageNames": ["registry1.dso.mil/ironbank/opensource/istio-1.8/proxyv2"],
+      "major": {
+        "enabled": true
+      }
+    }
+  ],
   "regexManagers": [
     {
       "fileMatch": [
@@ -9,8 +18,8 @@
       "matchStrings": [
         "org\\.opencontainers\\.image\\.version:\\s+\"(?<currentValue>.+?)\""
       ],
-      "depNameTemplate": "Cisco-Talos/clamav-devel/",
-      "datasourceTemplate": "github-releases"
+      "depNameTemplate": "registry1.dso.mil/ironbank/opensource/istio-1.8/proxyv/",
+      "datasourceTemplate": "docker"
     },
     {
       "fileMatch": [
@@ -19,8 +28,8 @@
       "matchStrings": [
         "tags:\\s+-\\s+\"(?<currentValue>.+?)\""
       ],
-      "depNameTemplate": "Cisco-Talos/clamav-devel/releases",
-      "datasourceTemplate": "github-releases"
+      "depNameTemplate": "registry1.dso.mil/ironbank/opensource/istio-1.8/proxyv",
+      "datasourceTemplate": "docker"
     }
   ]
 }

@@ -1,0 +1,53 @@
+---
+apiVersion: v1
+
+# The repository name in registry1, excluding /ironbank/
+name: "opensource/clamav/clamav"
+
+# List of tags to push for the repository in registry1
+# The most specific version should be the first tag and will be shown
+# on ironbank.dsop.io
+tags:
+- "0.102.4"
+- "latest"
+
+# Build args passed to Dockerfile ARGs
+args:
+  BASE_IMAGE: "redhat/ubi/ubi8"
+  BASE_TAG: "8.3"
+
+# Docker image labels
+labels:
+  org.opencontainers.image.title: "clamav"
+  # Human-readable description of the software packaged in the image
+  org.opencontainers.image.description: "ClamAV is an anti-virus and malware scanning application which can be used on Linux, Windows, and Mac OS."
+  # License(s) under which contained software is distributed
+  org.opencontainers.image.licenses: "GPL-3.0-or-later"
+  # URL to find more information on the image
+  org.opencontainers.image.url: "https://www.clamav.net/"
+  # Name of the distributing entity, organization or individual
+  org.opencontainers.image.vendor: "Cisco Systems, Sourcefire"
+  org.opencontainers.image.version: "0.102.4"
+  # Keywords to help with search (ex. "cicd,gitops,golang")
+  mil.dso.ironbank.image.keywords: "anti-virus,malware,scanner,virus,security"
+  # This value can be "opensource" or "commercial"
+  mil.dso.ironbank.image.type: "opensource"
+  # Product the image belongs to for grouping multiple images
+  mil.dso.ironbank.product.name: "opensource"
+
+# List of resources to make available to the offline build context
+resources:
+- filename: clamav.tar.gz
+  url: https://www.clamav.net/downloads/production/clamav-0.103.2.tar.gz
+  validation:
+    type: sha256
+    value: d4b5d0ac666262e423a326fb54778caa7c69624d6c3f9542895feb8478271bd2
+
+# List of project maintainers
+maintainers:
+- email: "gavin.scallon@parsons.com"
+  # The name of the current container owner
+  name: "Gavin Scallon"
+  # The gitlab username of the current container owner
+  username: "gavin.scallon"
+  cht_member: true

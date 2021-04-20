@@ -1,15 +1,6 @@
 {
   "assignees": ["@michaelmcleroy"],
   "baseBranches": ["master"],
-  "packageRules": [
-    {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["registry1.dso.mil/ironbank/opensource/istio-1.8/proxyv2"],
-      "major": {
-        "enabled": true
-      }
-    }
-  ],
   "regexManagers": [
     {
       "fileMatch": [

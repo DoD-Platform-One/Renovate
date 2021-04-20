@@ -4,7 +4,7 @@
   "regexManagers": [
     {
       "fileMatch": [
-        "^values.yaml$"
+        "^values\\.yaml$"
       ],
       "matchStrings": [
         "org\\.opencontainers\\.image\\.version:\\s+\"(?<currentValue>.+?)\""
@@ -14,7 +14,7 @@
     },
     {
       "fileMatch": [
-        "^values.yaml$"
+        "^values\\.yaml$"
       ],
       "matchStrings": [
         "tags:\\s+-\\s+\"(?<currentValue>.+?)\""

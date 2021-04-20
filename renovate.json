@@ -18,7 +18,7 @@
       "matchStrings": [
         "org\\.opencontainers\\.image\\.version:\\s+\"(?<currentValue>.+?)\""
       ],
-      "depNameTemplate": "registry1.dso.mil/ironbank/opensource/istio-1.8/proxyv/",
+      "depNameTemplate": "registry1.dso.mil/ironbank/opensource/istio-1.8/proxyv2",
       "datasourceTemplate": "docker"
     },
     {
@@ -28,7 +28,7 @@
       "matchStrings": [
         "tags:\\s+-\\s+\"(?<currentValue>.+?)\""
       ],
-      "depNameTemplate": "registry1.dso.mil/ironbank/opensource/istio-1.8/proxyv",
+      "depNameTemplate": "registry1.dso.mil/ironbank/opensource/istio-1.8/proxyv2",
       "datasourceTemplate": "docker"
     }
   ]

@@ -1,5 +1,7 @@
 {
   "baseBranches": ["master"],
+  "dependencyDashboard": "true",
+  "dependencyDashboardAutoclose": "true",
   "packageRules": [
     {
       "matchPackagePatterns": [ "ironbank" ],

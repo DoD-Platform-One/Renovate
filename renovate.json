@@ -1,5 +1,11 @@
 {
   "baseBranches": ["master"],
+  "packageRules": [
+    {
+      "matchPackagePatterns": [ "ironbank" ],
+      "groupName": "ironbank"
+    }
+  ],
   "regexManagers": [
     {
       "fileMatch": [

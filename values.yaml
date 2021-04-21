@@ -8,7 +8,7 @@ name: "opensource/clamav/clamav"
 # The most specific version should be the first tag and will be shown
 # on ironbank.dsop.io
 tags:
-- "1.9.3"
+- "1.8.2"
 - "latest"
 
 # Build args passed to Dockerfile ARGs
@@ -27,7 +27,7 @@ labels:
   org.opencontainers.image.url: "https://www.clamav.net/"
   # Name of the distributing entity, organization or individual
   org.opencontainers.image.vendor: "Cisco Systems, Sourcefire"
-  org.opencontainers.image.version: "1.8.4"
+  org.opencontainers.image.version: "1.8.2"
   # Keywords to help with search (ex. "cicd,gitops,golang")
   mil.dso.ironbank.image.keywords: "anti-virus,malware,scanner,virus,security"
   # This value can be "opensource" or "commercial"

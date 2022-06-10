@@ -1,0 +1,55 @@
+renovate:
+  enabled: true
+
+  git:
+    repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/renovate
+    branch: main
+    path: chart
+
+  flux: {}
+
+  ingress:
+    gateway: ""
+
+# Big Bang 
+domain: bigbang.dev
+
+networkPolicies:
+  enabled: true
+
+istiooperator:
+  enabled: true
+
+istio:
+  enabled: true
+
+gatekeeper:
+  enabled: true
+
+clusterAuditor:
+  enabled: true
+
+eckoperator:
+  enabled: false
+
+logging:
+  enabled: false
+
+fluentbit:
+  enabled: false
+
+# -- This is because integration job in bbci is broken and clusterAuditor fails without monitoring enabled
+monitoring:
+  enabled: true
+
+jaeger:
+  enabled: false
+
+kiali:
+  enabled: false
+
+twistlock:
+  enabled: false
+
+promtail:
+  enabled: false

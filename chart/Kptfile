@@ -1,0 +1,11 @@
+apiVersion: kpt.dev/v1alpha1
+kind: Kptfile
+metadata:
+  name: renovate
+upstream:
+  type: git
+  git:
+    commit: 25e5fc95267f20ada51d0a8f458221e2d43f9405
+    repo: https://github.com/renovatebot/helm-charts
+    directory: charts/renovate
+    ref: renovate-32.38.0

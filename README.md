@@ -1,6 +1,6 @@
 # renovate
 
-![Version: 32.38.0-bb.0](https://img.shields.io/badge/Version-32.38.0--bb.0-informational?style=flat-square) ![AppVersion: 32.38.0](https://img.shields.io/badge/AppVersion-32.38.0-informational?style=flat-square)
+![Version: 32.38.0-bb.1](https://img.shields.io/badge/Version-32.38.0--bb.1-informational?style=flat-square) ![AppVersion: 32.38.0](https://img.shields.io/badge/AppVersion-32.38.0-informational?style=flat-square)
 
 Universal dependency update tool that fits into your workflows.
 
@@ -53,7 +53,7 @@ helm install renovate chart/
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | imagePullSecrets[0].name | string | `"private-registry"` |  |
 | renovate.existingConfigFile | string | `""` | Custom exiting global renovate config |
-| renovate.config | string | `""` | Inline global renovate config.json |
+| renovate.config | string | `"{}"` | Inline global renovate config.json |
 | ssh_config.enabled | bool | `false` |  |
 | ssh_config.id_rsa | string | `""` |  |
 | ssh_config.id_rsa_pub | string | `""` |  |
@@ -75,7 +75,7 @@ helm install renovate chart/
 | redis.architecture | string | `"standalone"` | Disable replication by default |
 | redis.auth.enabled | bool | `false` | Don't require a password by default |
 | redis.kubeVersion | string | `""` | Override Kubernetes version for redis chart |
-| apiVersionOverrides.cronjob | string | `""` | String to override apiVersion of cronjob rendered by this helm chart |
+| apiVersionOverrides.cronjob | string | `"batch/v1"` | String to override apiVersion of cronjob rendered by this helm chart |
 | domain | string | `"bigbang.dev"` | Big Bang Values |
 | istio.enabled | bool | `false` |  |
 | istio.mtls.mode | string | `"PERMISSIVE"` | STRICT = Allow only mutual TLS traffic, PERMISSIVE = Allow both plain text and mutual TLS traffic PERMISSIVE is required for any action which redeploys pods because STRICT interferes with initContainers Can be changed to STRICT after all initContainers have finished but will interfere with upgrades/pod deployments that have initContainers |

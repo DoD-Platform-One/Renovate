@@ -1,6 +1,9 @@
 dependencies:
 - name: redis
-  repository: file://deps/redis
-  version: 16.9.2-bb.0
-digest: sha256:5bc0be4aa74148551cec5556e12a42f81ccf5ab9d3aea0ff2d616c4c511539f8
-generated: "2022-06-09T15:54:24.194470134-05:00"
+  repository: oci://registry1.dso.mil/bigbang
+  version: 17.7.2-bb.0
+- name: gluon
+  repository: oci://registry1.dso.mil/bigbang
+  version: 0.3.2
+digest: sha256:ecee3e2d238711ccd73332f9dd5baa4ed4d9f7715772f2c286646d803c3a9acf
+generated: "2023-03-24T10:39:09.91868-07:00"

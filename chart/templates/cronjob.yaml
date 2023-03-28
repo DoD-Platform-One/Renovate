@@ -41,7 +41,15 @@ spec:
       labels:
         {{- include "renovate.selectorLabels" . | nindent 8 }}
     spec:
+      {{- if .Values.cronjob.ttlSecondsAfterFinished }}
+      ttlSecondsAfterFinished: {{ .Values.cronjob.ttlSecondsAfterFinished }}
+      {{- end }}
+      {{- if .Values.cronjob.activeDeadlineSeconds }}
+      activeDeadlineSeconds: {{ .Values.cronjob.activeDeadlineSeconds }}
+      {{- end }}
+      {{- if .Values.cronjob.jobBackoffLimit }}
       backoffLimit: {{ .Values.cronjob.jobBackoffLimit }}
+      {{- end }}
       template:
         metadata:
           labels:
@@ -56,6 +64,14 @@ spec:
         spec:
           serviceAccountName: {{ include "renovate.serviceAccountName" . }}
           restartPolicy: {{ .Values.cronjob.jobRestartPolicy }}
+        {{- with .Values.hostAliases }}
+          hostAliases:
+            {{- toYaml . | nindent 12 }}
+        {{- end }}
+          {{- if .Values.cronjob.initContainers }}
+          initContainers:
+            {{- toYaml .Values.cronjob.initContainers | nindent 12 }}
+          {{- end }}
           containers:
             - name: {{ .Chart.Name }}
               {{ if .Values.istio.enabled }}
@@ -70,7 +86,20 @@ spec:
               {{ end }}
               image: "{{ .Values.image.repository }}:{{ include "renovate.imageTag" . }}"
               imagePullPolicy: {{ .Values.image.pullPolicy }}
-              {{- if or .Values.renovate.config .Values.ssh_config.enabled .Values.extraVolumes }}
+              {{- if or .Values.dind.enabled .Values.cronjob.preCommand}}
+              command: ["/bin/bash", "-c"]
+              args:
+                - |
+                {{- if .Values.dind.enabled }}
+                  trap "touch /tmp/main-terminated" EXIT
+                  while true; do if [[ -f "/tmp/dind-started" ]]; then break; fi; sleep 1; done
+                {{- end }}
+                {{- if .Values.cronjob.preCommand }}
+                  {{- .Values.cronjob.preCommand | nindent 18 }}
+                {{- end }}
+                  renovate
+              {{- end }}
+              {{- if or .Values.renovate.config .Values.ssh_config.enabled .Values.dind.enabled .Values.extraVolumes }}
               volumeMounts:
               {{- if .Values.renovate.config }}
               - name: config-volume
@@ -85,6 +114,14 @@ spec:
               {{- if .Values.extraVolumeMounts }}
                 {{- toYaml .Values.extraVolumeMounts | nindent 14 }}
               {{- end }}
+              {{- end }}
+              {{- if .Values.renovate.persistence.cache.enabled }}
+              - name: {{ include "renovate.fullname" . }}-cache
+                mountPath: /tmp/renovate
+              {{- end }}
+              {{- if .Values.dind.enabled }}
+              - name: {{ .Chart.Name }}-tmp-volume
+                mountPath: /tmp
               {{- end }}
               env:
                 {{- if .Values.renovate.existingConfigFile }}
@@ -102,6 +139,17 @@ spec:
                 - name: {{ $k | quote }}
                   value: {{ $v | quote }}
                 {{- end }}
+                {{- if .Values.dind.enabled }}
+                - name: DOCKER_HOST
+                  value: 127.0.0.1:2376
+                - name: DOCKER_CERT_PATH
+                  value: "/tmp/certs/client"
+                - name: DOCKER_TLS_VERIFY
+                  value: "true"
+                {{- end }}
+                {{- with .Values.envList }}
+                  {{- toYaml . | nindent 16 }}
+                {{- end }}
               envFrom:
                 {{- if or .Values.secrets .Values.existingSecret }}
                 - secretRef:
@@ -110,13 +158,55 @@ spec:
                 {{- with .Values.envFrom }}
                   {{- toYaml . | nindent 16 }}
                 {{- end }}
+            {{- with .Values.renovate.securityContext }}
+              securityContext:
+                {{- toYaml . | nindent 16 }}
+            {{- end }}
+            {{- with .Values.resources }}
               resources:
-                {{- toYaml .Values.resources | nindent 16 }}
+                {{- toYaml . | nindent 16 }}
+            {{- end }}
+            {{- if .Values.dind.enabled }}
+            - name: {{ .Chart.Name }}-dind
+              image: "{{ .Values.dind.image.repository }}:{{ .Values.dind.image.tag }}"
+              imagePullPolicy: {{ .Values.dind.image.pullPolicy }}
+              command: ["/bin/sh", "-c"]
+              args:
+                - |
+                  dockerd-entrypoint.sh &
+                  CHILD_PID=$!
+                  while ! (pgrep containerd); do sleep 1; done
+                  touch /tmp/dind-started
+                  (while true; do if [[ -f "/tmp/main-terminated" ]]; then kill $CHILD_PID; fi; sleep 1; done) &
+                  wait $CHILD_PID
+                  if [[ -f "/tmp/main-terminated" ]]; then exit 0; fi
+              env:
+                - name: DOCKER_TLS_CERTDIR
+                  value: "/tmp/certs"
+            {{- with .Values.dind.securityContext }}
+              securityContext:
+                {{- toYaml . | nindent 16 }}
+            {{- end }}
+              volumeMounts:
+                - name: {{ .Chart.Name }}-tmp-volume
+                  mountPath: /tmp
+            {{- end }}
           volumes:
             {{- if .Values.renovate.config }}
+              {{- if .Values.renovate.configIsSecret }}
+            - name: config-volume
+              secret:
+                secretName: {{ include "renovate.fullname" . }}-config
+              {{- else }}
             - name: config-volume
               configMap:
                 name: {{ include "renovate.fullname" . }}-config
+              {{- end }}
+            {{- end }}
+            {{- if .Values.renovate.persistence.cache.enabled }}
+            - name: {{ include "renovate.fullname" . }}-cache
+              persistentVolumeClaim:
+                claimName: {{ include "renovate.fullname" . }}-cache
             {{- end }}
             {{- if .Values.ssh_config.enabled }}
             - name: ssh-config-volume

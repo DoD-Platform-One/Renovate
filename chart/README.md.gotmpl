@@ -38,6 +38,24 @@ The following table lists the configurable parameters of the chart and the defau
 
 {{ template "chart.valuesSection" . }}
 
+## Renovate persistent cache
+
+To speed up execution time of jobs it could be useful to enable persistent caching. This means that Renovate
+can make use of the cache that have been build up in previous runs. Set `renovate.persistence.cache.enabled` to true
+to enable this. If necessary, the storageClass can be configured and the storageSize can be set to the preferred value.
+
+**NOTE**: `securityContext.fsGroup` must be set to the correct group ID to use the persistent cache. Without it, renovate
+can't write to the mounted PVC. For the current default user (`ubuntu`), the correct fsGroup is `1000`.
+
+## Renovate config templating
+
+Enable `renovate.configEnableHelmTpl` to use helm templates for generated renovate `config.json`.
+Allows you to reference values using `"{{ .Values.someValue }}"` in your config
+
+**NOTE**: setting `renovate.configEnableHelmTpl` to true means that you have to
+escape your config entries containing `{{` (i.e. `"key": "{{depName}}"`) in the
+value by wrapping it like: `"key": "{{ "{{depName}}" }}"`.
+
 ## Docker in Docker configuration
 
 When `dind.enabled` is set to `true`, a Docker in Docker container will run as a sidecar to supply a Docker daemon to the RenovateBot container. This allows the configuration `binarySource` to be set to `docker`, which is the default configuration in the slim Docker images.

@@ -5,7 +5,7 @@
     "dependencyDashboardHeader": "- [ ] Update Helm chart from upstream to match new version.",
     "dependencyDashboardTitle": "Renovate: Upgrade Renovate Images",
     "draftPR": true,
-    "enabledManagers": ["helm-values","regex"],
+    "enabledManagers": ["regex", "helmv3"],
     "ignorePaths": ["chart/charts/**"],
     "labels": ["renovate"],
     "commitMessagePrefix": "SKIP UPDATE CHECK",
@@ -27,7 +27,7 @@
         {
             "fileMatch": ["^chart/Chart\\.yaml$"],
             "matchStrings": [
-                "appVersion:\\s+(?<currentValue>.+)",
+                "appVersion:\\s+'(?<currentValue>.+)'",
                 "- Renovate:\\s+(?<currentValue>.+)",
                 "image:[^\\S\\r\\n]+(?<depName>.+):(?<currentValue>.+)"
             ],

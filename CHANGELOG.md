@@ -2,6 +2,13 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [34.120.0-bb.0] - 2023-03-24
+### Changed
+- Added standard Network Policies
+- Update renovate.json to include `helmv3` manager
+- Update redis dependency to reference OCI artifact
+- Update to application and chart version to `34.120.0`
+
 ## [32.38.0-bb.1] - 2023-03-22
 ### Added
 - Added `renovate.json` configuration to project root for renovate updates

@@ -1,6 +1,6 @@
 # renovate
 
-![Version: 32.38.0-bb.1](https://img.shields.io/badge/Version-32.38.0--bb.1-informational?style=flat-square) ![AppVersion: 32.38.0](https://img.shields.io/badge/AppVersion-32.38.0-informational?style=flat-square)
+![Version: 34.120.0-bb.0](https://img.shields.io/badge/Version-34.120.0--bb.0-informational?style=flat-square) ![AppVersion: 34.120.0](https://img.shields.io/badge/AppVersion-34.120.0-informational?style=flat-square)
 
 Universal dependency update tool that fits into your workflows.
 
@@ -36,46 +36,72 @@ helm install renovate chart/
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| cronjob.schedule | string | `"0 1 * * *"` |  |
+| global.commonLabels | object | `{}` | Additional labels to be set on all renovate resources |
+| nameOverride | string | `""` | Override the name of the chart |
+| fullnameOverride | string | `""` | Override the fully qualified app name |
+| cronjob.schedule | string | `"0 1 * * *"` | Schedules the job to run using cron notation |
 | cronjob.suspend | bool | `false` | If it is set to true, all subsequent executions are suspended. This setting does not apply to already started executions. |
-| cronjob.annotations | object | `{}` |  |
-| cronjob.labels | object | `{}` |  |
-| cronjob.concurrencyPolicy | string | `""` |  |
-| cronjob.failedJobsHistoryLimit | string | `""` |  |
-| cronjob.successfulJobsHistoryLimit | string | `""` |  |
-| cronjob.jobRestartPolicy | string | `"Never"` |  |
-| cronjob.jobBackoffLimit | string | `""` |  |
-| cronjob.startingDeadlineSeconds | string | `""` |  |
-| pod.annotations | object | `{}` |  |
-| pod.labels | object | `{}` |  |
+| cronjob.annotations | object | `{}` | Annotations to set on the cronjob |
+| cronjob.labels | object | `{}` | Labels to set on the cronjob |
+| cronjob.concurrencyPolicy | string | `""` | "Allow" to allow concurrent runs, "Forbid" to skip new runs if a previous run is still running or "Replace" to replace the previous run |
+| cronjob.failedJobsHistoryLimit | string | `""` | Amount of failed jobs to keep in history |
+| cronjob.successfulJobsHistoryLimit | string | `""` | Amount of completed jobs to keep in history |
+| cronjob.jobRestartPolicy | string | `"Never"` | Set to Never to restart the job when the pod fails or to OnFailure to restart when a container fails |
+| cronjob.ttlSecondsAfterFinished | string | `""` | Time to keep the job after it finished before automatically deleting it |
+| cronjob.activeDeadlineSeconds | string | `""` | Deadline for the job to finish |
+| cronjob.jobBackoffLimit | string | `""` | Number of times to retry running the pod before considering the job as being failed |
+| cronjob.startingDeadlineSeconds | string | `""` | Deadline to start the job, skips execution if job misses it's configured deadline |
+| cronjob.initContainers | list | `[]` | Additional initContainers that can be executed before renovate |
+| cronjob.preCommand | string | `""` | Prepend shell commands before renovate runs |
+| pod.annotations | object | `{}` | Annotations to set on the pod |
+| pod.labels | object | `{}` | Labels to set on the pod |
 | image.repository | string | `"registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate"` |  |
-| image.tag | string | `"32.38.0"` |  |
+| image.tag | string | `"34.120.0"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | imagePullSecrets[0].name | string | `"private-registry"` |  |
 | renovate.existingConfigFile | string | `""` | Custom exiting global renovate config |
 | renovate.config | string | `"{}"` | Inline global renovate config.json |
-| ssh_config.enabled | bool | `false` |  |
-| ssh_config.id_rsa | string | `""` |  |
-| ssh_config.id_rsa_pub | string | `""` |  |
-| ssh_config.config | string | `""` |  |
-| ssh_config.existingSecret | string | `""` |  |
-| secrets | object | `{}` |  |
-| existingSecret | string | `""` |  |
+| renovate.configEnableHelmTpl | bool | `false` | Use the Helm tpl function on your configuration. See README for how to use this value |
+| renovate.configIsSecret | bool | `false` | Use this to create the renovate-config as a secret instead of a configmap |
+| renovate.securityContext | object | `{}` | Renovate Container-level security-context |
+| renovate.persistence | object | `{"cache":{"enabled":false,"storageClass":"","storageSize":"512Mi"}}` | Options related to persistence |
+| renovate.persistence.cache.enabled | bool | `false` | Allow the cache to persist between runs |
+| renovate.persistence.cache.storageClass | string | `""` | Storage class of the cache PVC |
+| renovate.persistence.cache.storageSize | string | `"512Mi"` | Storage size of the cache PVC |
+| ssh_config.enabled | bool | `false` | Whether to enable the use and creation of a secret containing .ssh files |
+| ssh_config.id_rsa | string | `""` | Contents of the id_rsa file |
+| ssh_config.id_rsa_pub | string | `""` | Contents of the id_rsa_pub file |
+| ssh_config.config | string | `""` | Contents of the config file |
+| ssh_config.existingSecret | string | `""` | Name of the existing secret containing a valid .ssh configuration |
+| secrets | object | `{}` | Environment variables that should be referenced from a k8s secret, cannot be used when existingSecret is set |
+| existingSecret | string | `""` | k8s secret to reference environment variables from. Overrides secrets if set |
 | dind.enabled | bool | `false` | dind is non-functional in BB as it requires a privileged non-hardened container, changing this value does nothing |
+| dind.slim.enabled | bool | `true` | Do not add `-slim` suffix to image tag when using dind |
+| dind.image.repository | string | `"docker"` | Repository to pull dind image from |
+| dind.image.tag | string | `"20.10.23-dind"` | dind image tag to pull |
+| dind.image.pullPolicy | string | `"IfNotPresent"` | "IfNotPresent" to pull the image if no image with the specified tag exists on the node, "Always" to always pull the image or "Never" to try and use pre-pulled images |
+| dind.securityContext | object | `{"privileged":true}` | DinD Container-level security-context. Privileged is needed for DinD, it will not work without! |
 | extraConfigmaps | list | `[]` | Additional configmaps. A generated configMap name is: "renovate.fullname" + "extra" + name(below) e.g. renovate-netrc-config |
 | extraVolumes | list | `[]` | Additional volumes to the pod |
 | extraVolumeMounts | list | `[]` | Additional volumeMounts to the container |
-| serviceAccount.create | bool | `false` |  |
-| serviceAccount.annotations | object | `{}` |  |
-| serviceAccount.name | string | `""` |  |
-| resources | object | `{}` |  |
-| envFrom | list | `[]` |  |
-| env | object | `{}` |  |
+| serviceAccount.create | bool | `false` | Specifies whether a service account should be created |
+| serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
+| serviceAccount.name | string | `""` | The name of the service account to use If not set and create is true, a name is generated using the fullname template |
+| resources | object | `{}` | Specify resource limits and requests for the renovate container |
+| envFrom | list | `[]` | Environment variables to add from existing secrets/configmaps. Uses the keys as variable name |
+| env | object | `{}` | Environment variables to set on the renovate container |
+| envList | list | `[]` | Additional env. Helpful too if you want to use anything other than a `value` source. |
 | redis.enabled | bool | `false` | Enable the Redis subchart? |
+| redis.nameOverride | string | `""` | Override the prefix of the redisHost |
 | redis.architecture | string | `"standalone"` | Disable replication by default |
 | redis.auth.enabled | bool | `false` | Don't require a password by default |
 | redis.kubeVersion | string | `""` | Override Kubernetes version for redis chart |
 | apiVersionOverrides.cronjob | string | `"batch/v1"` | String to override apiVersion of cronjob rendered by this helm chart |
+| hostAliases | list | `[]` | Override hostname resolution |
+| securityContext | object | `{}` | Pod-level security-context |
+| nodeSelector | object | `{}` | Select the node using labels to specify where the cronjob pod should run on |
+| affinity | object | `{}` | Configure the pod(Anti)Affinity and/or node(Anti)Affinity |
+| tolerations | list | `[]` | Configure which node taints the pod should tolerate |
 | domain | string | `"bigbang.dev"` | Big Bang Values |
 | istio.enabled | bool | `false` |  |
 | istio.mtls.mode | string | `"PERMISSIVE"` | STRICT = Allow only mutual TLS traffic, PERMISSIVE = Allow both plain text and mutual TLS traffic PERMISSIVE is required for any action which redeploys pods because STRICT interferes with initContainers Can be changed to STRICT after all initContainers have finished but will interfere with upgrades/pod deployments that have initContainers |

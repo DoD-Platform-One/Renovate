@@ -28,10 +28,16 @@
             "fileMatch": ["^chart/Chart\\.yaml$"],
             "matchStrings": [
                 "appVersion:\\s+'(?<currentValue>.+)'",
-                "- Renovate:\\s+(?<currentValue>.+)",
-                "image:[^\\S\\r\\n]+(?<depName>.+):(?<currentValue>.+)"
+                "- Renovate:\\s+(?<currentValue>.+)"
             ],
             "depNameTemplate": "registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate",
+            "datasourceTemplate": "docker"
+        },
+        {
+            "fileMatch": ["^chart/Chart\\.yaml$"],
+            "matchStrings": [
+                "image:[^\\S\\r\\n]+(?<depName>.+):(?<currentValue>.+)"
+            ],
             "datasourceTemplate": "docker"
         }
     ],

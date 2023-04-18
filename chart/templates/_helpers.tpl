@@ -91,8 +91,12 @@ Define ssh config secret
 Force slim image if dind is enabled and slim is not disabled
 */}}
 {{- define "renovate.imageTag" -}}
+{{- if and .Values.dind.enabled .Values.dind.slim.enabled (not (eq .Values.image.tag "slim")) (not (regexMatch "^.*-slim$" .Values.image.tag)) -}}
+{{- .Values.image.tag }}-slim
+{{- else -}}
 {{- .Values.image.tag }}
 {{- end -}}
+{{- end -}} 
 
 {{/*
 Create a default fully qualified Redis&trade; name.

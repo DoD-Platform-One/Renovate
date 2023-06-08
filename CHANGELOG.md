@@ -2,6 +2,12 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [34.120.0-bb.2] - 2023-05-23
+### Changed
+- Bumped Redis chart dependency to `17.10.2-bb.0`
+- Bumped Gluon chart dependency to `0.4.0`
+- Updated redis to `7.0.11`
+
 ## [34.120.0-bb.1] - 2023-04-07
 ### Changed
 - Updated redis to 7.0.10

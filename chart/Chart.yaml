@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: '34.120.0'
 description: Universal dependency update tool that fits into your workflows.
 name: renovate
-version: '34.120.0-bb.1'
+version: '34.120.0-bb.2'
 icon: https://docs.renovatebot.com/assets/images/logo.png
 home: https://github.com/renovatebot/renovate
 keywords:
@@ -28,7 +28,7 @@ annotations:
     - name: renovate
       image: registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate:34.120.0
     - name: redis
-      image: registry1.dso.mil/ironbank/bitnami/redis:7.0.10
+      image: registry1.dso.mil/ironbank/bitnami/redis:7.0.11
       condition: redis.enabled
     - name: exporter
       image: registry1.dso.mil/ironbank/bitnami/analytics/redis-exporter:v1.50.0
@@ -43,9 +43,8 @@ annotations:
 dependencies:
   - name: redis
     repository:  "oci://registry1.dso.mil/bigbang"
-    version: 17.9.3-bb.0
+    version: 17.10.2-bb.0
     condition: redis.enabled
   - name: gluon
-    version: "0.3.2"
+    version: "0.4.0"
     repository: "oci://registry1.dso.mil/bigbang"
-

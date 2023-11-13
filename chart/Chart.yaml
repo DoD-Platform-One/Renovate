@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: '34.120.0'
 description: Universal dependency update tool that fits into your workflows.
 name: renovate
-version: '34.120.0-bb.2'
+version: '34.120.0-bb.3'
 icon: https://docs.renovatebot.com/assets/images/logo.png
 home: https://github.com/renovatebot/renovate
 keywords:

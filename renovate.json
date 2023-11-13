@@ -16,7 +16,7 @@
             "registryUrls": ["https://registry1.dso.mil"]
         }
     ],
-        "regexManagers": [
+    "regexManagers": [
         {
             "fileMatch": ["^chart/values\\.yaml$"],
             "matchStrings": [
@@ -36,7 +36,7 @@
         {
             "fileMatch": ["^chart/Chart\\.yaml$"],
             "matchStrings": [
-                "image:[^\\S\\r\\n]+(?<depName>.+):(?<currentValue>.+)"
+                "(image: renovate/renovate:)|(image:[^\\S\\r\\n]+(?<depName>.+):(?<currentValue>.+))"
             ],
             "datasourceTemplate": "docker"
         }

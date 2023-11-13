@@ -2,6 +2,10 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [34.120.0-bb.3] - 2023-10-30
+### Changed
+- Removed an upstream annotation from being managed by our renovate
+
 ## [34.120.0-bb.2] - 2023-05-23
 ### Changed
 - Bumped Redis chart dependency to `17.10.2-bb.0`

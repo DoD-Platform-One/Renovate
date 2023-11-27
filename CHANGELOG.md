@@ -4,6 +4,15 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
 
+## [37.27.0-bb.1] - 2023-11-27
+### Added
+- Added istio `allow-nothing` policy
+- Added istio `allow-ingress` polic(y|ies)
+- Added istio custom policy template
+- Added istio `allow-https-port` policy
+- Added istio `allow-namespace-com` policy
+- Addded istio `allow-dns-port` policy 
+
 ## [37.27.0-bb.0] - 2023-11-14
 ### Changed
 - Bumped Redis chart dependency to `18.0.4-bb.0`

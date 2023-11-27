@@ -2,6 +2,16 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+---
+
+## [37.27.0-bb.0] - 2023-11-14
+### Changed
+- Bumped Redis chart dependency to `18.0.4-bb.0`
+- Bumped Gluon chart dependency to `0.4.4`
+- Updated redis to `7.2.2`
+- Updated redis-exporter to `v1.55.0``
+- Updated renovate to `37.27.0`
+
 ## [34.120.0-bb.3] - 2023-10-30
 ### Changed
 - Removed an upstream annotation from being managed by our renovate

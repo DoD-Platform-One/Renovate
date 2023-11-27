@@ -1,6 +1,6 @@
 # renovate
 
-![Version: 34.120.0-bb.3](https://img.shields.io/badge/Version-34.120.0--bb.3-informational?style=flat-square) ![AppVersion: 34.120.0](https://img.shields.io/badge/AppVersion-34.120.0-informational?style=flat-square)
+![Version: 37.27.0-bb.0](https://img.shields.io/badge/Version-37.27.0--bb.0-informational?style=flat-square) ![AppVersion: 37.27.0](https://img.shields.io/badge/AppVersion-37.27.0-informational?style=flat-square)
 
 Universal dependency update tool that fits into your workflows.
 
@@ -40,6 +40,7 @@ helm install renovate chart/
 | nameOverride | string | `""` | Override the name of the chart |
 | fullnameOverride | string | `""` | Override the fully qualified app name |
 | cronjob.schedule | string | `"0 1 * * *"` | Schedules the job to run using cron notation |
+| cronjob.timeZone | string | `""` | You can specify a time zone for a CronJob by setting timeZone to the name of a valid time zone. (starting with k8s 1.27) <https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#time-zones> |
 | cronjob.suspend | bool | `false` | If it is set to true, all subsequent executions are suspended. This setting does not apply to already started executions. |
 | cronjob.annotations | object | `{}` | Annotations to set on the cronjob |
 | cronjob.labels | object | `{}` | Labels to set on the cronjob |
@@ -53,10 +54,12 @@ helm install renovate chart/
 | cronjob.startingDeadlineSeconds | string | `""` | Deadline to start the job, skips execution if job misses it's configured deadline |
 | cronjob.initContainers | list | `[]` | Additional initContainers that can be executed before renovate |
 | cronjob.preCommand | string | `""` | Prepend shell commands before renovate runs |
+| cronjob.postCommand | string | `""` | Append shell commands after renovate runs |
 | pod.annotations | object | `{}` | Annotations to set on the pod |
 | pod.labels | object | `{}` | Labels to set on the pod |
-| image.repository | string | `"registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate"` | Repository to pull renovate image from |
-| image.tag | string | `"34.120.0"` | Renovate image tag to pull |
+| image.registry | string | `"registry1.dso.mil"` | Repository to pull renovate image from |
+| image.repository | string | `"ironbank/container-hardening-tools/renovate/renovate"` |  |
+| image.tag | string | `"37.27.0"` | Renovate image tag to pull |
 | image.pullPolicy | string | `"IfNotPresent"` | "IfNotPresent" to pull the image if no image with the specified tag exists on the node, "Always" to always pull the image or "Never" to try and use pre-pulled images |
 | imagePullSecrets | list | `[{"name":"private-registry"}]` | Secret to use to pull the image from the repository |
 | renovate.existingConfigFile | string | `""` | Custom exiting global renovate config |
@@ -75,15 +78,10 @@ helm install renovate chart/
 | ssh_config.existingSecret | string | `""` | Name of the existing secret containing a valid .ssh configuration |
 | secrets | object | `{}` | Environment variables that should be referenced from a k8s secret, cannot be used when existingSecret is set |
 | existingSecret | string | `""` | k8s secret to reference environment variables from. Overrides secrets if set |
-| dind.enabled | bool | `false` | dind is non-functional in BB as it requires a privileged non-hardened container, changing this value does nothing |
-| dind.slim.enabled | bool | `true` | Do not add `-slim` suffix to image tag when using dind |
-| dind.image.repository | string | `"docker"` | Repository to pull dind image from |
-| dind.image.tag | string | `"20.10.23-dind"` | dind image tag to pull |
-| dind.image.pullPolicy | string | `"IfNotPresent"` | "IfNotPresent" to pull the image if no image with the specified tag exists on the node, "Always" to always pull the image or "Never" to try and use pre-pulled images |
-| dind.securityContext | object | `{"privileged":true}` | DinD Container-level security-context. Privileged is needed for DinD, it will not work without! |
 | extraConfigmaps | list | `[]` | Additional configmaps. A generated configMap name is: "renovate.fullname" + "extra" + name(below) e.g. renovate-netrc-config |
 | extraVolumes | list | `[]` | Additional volumes to the pod |
 | extraVolumeMounts | list | `[]` | Additional volumeMounts to the container |
+| extraContainers | list | `[]` | Additional containers to the pod |
 | serviceAccount.create | bool | `false` | Specifies whether a service account should be created |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
 | serviceAccount.name | string | `""` | The name of the service account to use If not set and create is true, a name is generated using the fullname template |

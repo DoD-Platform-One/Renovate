@@ -16,7 +16,8 @@ kpt pkg update chart/@renovate-${chart.version} --strategy alpha-git-patch
 - set registry1 image and imagepullsecret
 ```yaml
 image:
-  repository: registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate
+  registry: registry1.dso.mil
+  repository: ironbank/container-hardening-tools/renovate/renovate
   tag: 34.120.0
   pullPolicy: IfNotPresent
 
@@ -58,6 +59,28 @@ networkPolicies:
 ### chart/bigbang/*
 - Add directory for network policies
 - Add peer-authentication resource
+
+### chart/templates/cronjob.yaml
+- Merge this in
+    ```yaml
+    spec:
+      jobTemplate:
+        spec:
+          template:
+            spec:
+              containers:
+                - name: {{ .Chart.Name }}
+                  {{ if .Values.istio.enabled }}
+                  command: ["/bin/sh"]
+                  args:
+                    - -c
+                    - >- 
+                      docker-entrypoint.sh;
+                      x=$(echo $?);
+                      curl -fsI -X POST http://localhost:15020/quitquitquit;
+                      exit $x;
+                  {{ end }}
+    ```
 
 # Testing new Renovate Version
 Identify a repository with a valid `renovate.json` to execute renovate against.

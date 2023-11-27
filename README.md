@@ -1,6 +1,6 @@
 # renovate
 
-![Version: 37.27.0-bb.0](https://img.shields.io/badge/Version-37.27.0--bb.0-informational?style=flat-square) ![AppVersion: 37.27.0](https://img.shields.io/badge/AppVersion-37.27.0-informational?style=flat-square)
+![Version: 37.27.0-bb.1](https://img.shields.io/badge/Version-37.27.0--bb.1-informational?style=flat-square) ![AppVersion: 37.27.0](https://img.shields.io/badge/AppVersion-37.27.0-informational?style=flat-square)
 
 Universal dependency update tool that fits into your workflows.
 
@@ -102,6 +102,8 @@ helm install renovate chart/
 | tolerations | list | `[]` | Configure which node taints the pod should tolerate |
 | domain | string | `"bigbang.dev"` | Big Bang Values |
 | istio.enabled | bool | `false` |  |
+| istio.hardened.enabled | bool | `false` |  |
+| istio.hardened.customAuthorizationPolicies | list | `[]` |  |
 | istio.mtls.mode | string | `"PERMISSIVE"` | STRICT = Allow only mutual TLS traffic, PERMISSIVE = Allow both plain text and mutual TLS traffic PERMISSIVE is required for any action which redeploys pods because STRICT interferes with initContainers Can be changed to STRICT after all initContainers have finished but will interfere with upgrades/pod deployments that have initContainers |
 | istio.renovate.enabled | bool | `true` |  |
 | istio.renovate.gateways[0] | string | `"istio-system/public"` |  |

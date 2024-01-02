@@ -4,6 +4,14 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
 
+## [37.104.1-bb.0] - 2023-12-19
+### Updated
+- ghcr.io/renovatebot/renovate - minor - 37.27.0 -> 37.104.1
+- gluon - patch - 0.4.4 -> 0.4.5
+- redis - minor - 18.0.4-bb.0 -> 18.3.2-bb.1
+- registry1.dso.mil/ironbank/bitnami/redis - patch - 7.2.2 -> 7.2.3
+- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate - minor - 37.27.0 -> 37.91.5
+
 ## [37.27.0-bb.1] - 2023-11-27
 ### Added
 - Added istio `allow-nothing` policy

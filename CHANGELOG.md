@@ -3,6 +3,9 @@
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [37.104.1-bb.1] - 2024-01-17
+### Updated
+- updated renovate.json to include mission team label
 
 ## [37.104.1-bb.0] - 2023-12-19
 ### Updated

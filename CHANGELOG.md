@@ -3,6 +3,15 @@
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [37.156.0-bb.0] - 2024-01-31
+### Updated
+- ghcr.io/renovatebot/renovate - minor - 37.104.1 -> 37.159.0
+- gluon - patch - 0.4.5 -> 0.4.7
+- redis - minor - 18.3.2-bb.1 -> 18.7.1-bb.1
+- registry1.dso.mil/ironbank/bitnami/analytics/redis-exporter - minor - v1.55.0 -> v1.57.0
+- registry1.dso.mil/ironbank/bitnami/redis - patch - 7.2.3 -> 7.2.4
+- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate - minor - 37.104.1 -> 37.156.0
+
 ## [37.104.1-bb.1] - 2024-01-17
 ### Updated
 - updated renovate.json to include mission team label

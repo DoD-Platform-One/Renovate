@@ -5,6 +5,10 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ---
 ## [37.220.2-bb.0] - 2024-03-04
 ### Updated
+- ghcr.io/renovatebot/renovate - minor - 37.220.2 -> 37.229.3
+
+## [37.220.2-bb.0] - 2024-03-04
+### Updated
 - ghcr.io/renovatebot/renovate - minor - 37.214.0 -> 37.226.0
 - registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate - minor - 37.207.0 -> 37.220.2
 

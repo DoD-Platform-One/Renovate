@@ -1,6 +1,6 @@
 # renovate
 
-![Version: 37.229.3-bb.0](https://img.shields.io/badge/Version-37.229.3--bb.0-informational?style=flat-square) ![AppVersion: 37.229.3](https://img.shields.io/badge/AppVersion-37.229.3-informational?style=flat-square)
+![Version: 37.279.0-bb.0](https://img.shields.io/badge/Version-37.279.0--bb.0-informational?style=flat-square) ![AppVersion: 37.279.0](https://img.shields.io/badge/AppVersion-37.279.0-informational?style=flat-square)
 
 Universal dependency update tool that fits into your workflows.
 
@@ -45,6 +45,8 @@ helm install renovate chart/
 | cronjob.annotations | object | `{}` | Annotations to set on the cronjob |
 | cronjob.labels | object | `{}` | Labels to set on the cronjob |
 | cronjob.concurrencyPolicy | string | `""` | "Allow" to allow concurrent runs, "Forbid" to skip new runs if a previous run is still running or "Replace" to replace the previous run |
+| cronjob.completions | string | `""` | "Number of successful completions is reached to mark the job as complete" |
+| cronjob.completionMode | string | `""` | "Where the jobs should be NonIndexed or Indexed" |
 | cronjob.failedJobsHistoryLimit | string | `""` | Amount of failed jobs to keep in history |
 | cronjob.successfulJobsHistoryLimit | string | `""` | Amount of completed jobs to keep in history |
 | cronjob.jobRestartPolicy | string | `"Never"` | Set to Never to restart the job when the pod fails or to OnFailure to restart when a container fails |
@@ -53,20 +55,21 @@ helm install renovate chart/
 | cronjob.jobBackoffLimit | string | `""` | Number of times to retry running the pod before considering the job as being failed |
 | cronjob.startingDeadlineSeconds | string | `""` | Deadline to start the job, skips execution if job misses it's configured deadline |
 | cronjob.initContainers | list | `[]` | Additional initContainers that can be executed before renovate |
+| cronjob.parallelism | string | `""` | Number of pods to run in parallel |
 | cronjob.preCommand | string | `""` | Prepend shell commands before renovate runs |
 | cronjob.postCommand | string | `""` | Append shell commands after renovate runs |
 | pod.annotations | object | `{}` | Annotations to set on the pod |
 | pod.labels | object | `{}` | Labels to set on the pod |
 | image.registry | string | `"registry1.dso.mil"` | Repository to pull renovate image from |
 | image.repository | string | `"ironbank/container-hardening-tools/renovate/renovate"` |  |
-| image.tag | string | `"37.229.3"` | Renovate image tag to pull |
+| image.tag | string | `"37.279.0"` | Renovate image tag to pull |
 | image.pullPolicy | string | `"IfNotPresent"` | "IfNotPresent" to pull the image if no image with the specified tag exists on the node, "Always" to always pull the image or "Never" to try and use pre-pulled images |
 | imagePullSecrets | list | `[{"name":"private-registry"}]` | Secret to use to pull the image from the repository |
 | renovate.existingConfigFile | string | `""` | Custom exiting global renovate config |
 | renovate.config | string | `"{}"` | Inline global renovate config.json |
 | renovate.configEnableHelmTpl | bool | `false` | Use the Helm tpl function on your configuration. See README for how to use this value |
 | renovate.configIsSecret | bool | `true` | Use this to create the renovate-config as a secret instead of a configmap |
-| renovate.securityContext | object | `{}` | Renovate Container-level security-context |
+| renovate.securityContext | object | `{"runAsGroup":1001,"runAsNonRoot":true,"runAsUser":1001}` | Renovate Container-level security-context |
 | renovate.persistence | object | `{"cache":{"enabled":false,"storageClass":"","storageSize":"512Mi"}}` | Options related to persistence |
 | renovate.persistence.cache.enabled | bool | `false` | Allow the cache to persist between runs |
 | renovate.persistence.cache.storageClass | string | `""` | Storage class of the cache PVC |
@@ -96,7 +99,7 @@ helm install renovate chart/
 | redis.kubeVersion | string | `""` | Override Kubernetes version for redis chart |
 | apiVersionOverrides.cronjob | string | `"batch/v1"` | String to override apiVersion of cronjob rendered by this helm chart |
 | hostAliases | list | `[]` | Override hostname resolution |
-| securityContext | object | `{}` | Pod-level security-context |
+| securityContext | object | `{"fsGroup":1001,"fsGroupChangePolicy":"OnRootMismatch","runAsGroup":1001,"runAsNonRoot":true,"runAsUser":1001}` | Pod-level security-context |
 | nodeSelector | object | `{}` | Select the node using labels to specify where the cronjob pod should run on |
 | affinity | object | `{}` | Configure the pod(Anti)Affinity and/or node(Anti)Affinity |
 | tolerations | list | `[]` | Configure which node taints the pod should tolerate |

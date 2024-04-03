@@ -20,6 +20,10 @@ cronjob:
   labels: {}
   # -- "Allow" to allow concurrent runs, "Forbid" to skip new runs if a previous run is still running or "Replace" to replace the previous run
   concurrencyPolicy: ''
+  # -- "Number of successful completions is reached to mark the job as complete"
+  completions: ''
+  # -- "Where the jobs should be NonIndexed or Indexed"
+  completionMode: ''
   # -- Amount of failed jobs to keep in history
   failedJobsHistoryLimit: ''
   # -- Amount of completed jobs to keep in history
@@ -39,7 +43,8 @@ cronjob:
   # initContainers:
   # - name: INIT_CONTAINER_NAME
   #   image: INIT_CONTAINER_IMAGE
-
+  # -- Number of pods to run in parallel
+  parallelism: ''
   # -- Prepend shell commands before renovate runs
   preCommand: ''
   # preCommand: |
@@ -63,7 +68,7 @@ image:
   registry: registry1.dso.mil
   repository: ironbank/container-hardening-tools/renovate/renovate
   # -- Renovate image tag to pull
-  tag: 37.229.3
+  tag: 37.279.0
   # -- "IfNotPresent" to pull the image if no image with the specified tag exists on the node, "Always" to always pull the image or "Never" to try and use pre-pulled images
   pullPolicy: IfNotPresent
 
@@ -95,7 +100,10 @@ renovate:
   configIsSecret: true
 
   # -- Renovate Container-level security-context
-  securityContext: {}
+  securityContext:
+    runAsUser: 1001
+    runAsGroup: 1001
+    runAsNonRoot: true
 
   # -- Options related to persistence
   persistence:
@@ -253,7 +261,12 @@ hostAliases: []
 #       - "your-hostname"
 
 # -- Pod-level security-context
-securityContext: {}
+securityContext:
+  runAsUser: 1001
+  runAsGroup: 1001
+  fsGroup: 1001
+  fsGroupChangePolicy: "OnRootMismatch"
+  runAsNonRoot: true
 
 # -- Select the node using labels to specify where the cronjob pod should run on
 nodeSelector: {}

@@ -3,6 +3,12 @@
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [37.302.0-bb.0] - 2024-03-04
+### Updated
+- ghcr.io/renovatebot/renovate - minor - 37.279.0 -> 37.302.0
+- gluon - patch - 0.4.8 -> 0.4.9
+- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate - minor - 37.279.0 -> 37.302.0
+
 ## [37.290.0-bb.0] - 2024-04-03
 ### Updated
 - Default values added underneath the pod and container-level securityContext property

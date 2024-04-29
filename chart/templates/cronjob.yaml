@@ -102,6 +102,7 @@ spec:
               command: ["/bin/bash", "-c"]
               args:
                 - |
+                  set -e;
                 {{- if .Values.cronjob.preCommand }}
                   {{- .Values.cronjob.preCommand | nindent 18 }}
                 {{- end }}

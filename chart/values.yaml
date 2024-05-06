@@ -308,3 +308,8 @@ networkPolicies:
     istio: ingressgateway
   # -- IP range of target deployment
   renovateTargetIpRange: ""
+  # Additional network policies
+  # ref: https://kubernetes.io/docs/concepts/services-networking/network-policies/
+  additionalPolicies: []
+
+

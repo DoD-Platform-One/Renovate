@@ -2,7 +2,6 @@
     "baseBranches": ["main"],
     "configWarningReuseIssue": false,
     "dependencyDashboard": true,
-    "dependencyDashboardHeader": "- [ ] Update Helm chart from upstream to match new version.",
     "dependencyDashboardTitle": "Renovate: Upgrade Renovate Images",
     "draftPR": true,
     "enabledManagers": ["regex", "helmv3"],

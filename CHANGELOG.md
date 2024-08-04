@@ -3,6 +3,15 @@
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [37.412.2-bb.0] - 2024-08-01
+### Updated
+- ghcr.io/renovatebot/renovate - minor - 37.302.0 -> 37.412.2
+- gluon - minor - 0.4.9 -> 0.5.0
+- redis - major - 18.15.0-bb.0 -> 19.5.0-bb.1
+- registry1.dso.mil/ironbank/bitnami/analytics/redis-exporter - minor - v1.58.0 -> v1.61.0
+- registry1.dso.mil/ironbank/bitnami/redis - patch - 7.2.4 -> 7.2.5
+- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate - minor - 37.302.0 -> 37.410.2
+
 ## [37.302.0-bb.2] - 2024-06-20
 ### Updated
 - Removed the allow nothing policy

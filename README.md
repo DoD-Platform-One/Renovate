@@ -1,6 +1,6 @@
 # renovate
 
-![Version: 37.302.0-bb.2](https://img.shields.io/badge/Version-37.302.0--bb.2-informational?style=flat-square) ![AppVersion: 37.302.0](https://img.shields.io/badge/AppVersion-37.302.0-informational?style=flat-square)
+![Version: 37.410.2-bb.0](https://img.shields.io/badge/Version-37.410.2--bb.0-informational?style=flat-square) ![AppVersion: 37.410.2](https://img.shields.io/badge/AppVersion-37.410.2-informational?style=flat-square)
 
 Universal dependency update tool that fits into your workflows.
 
@@ -56,24 +56,28 @@ helm install renovate chart/
 | cronjob.startingDeadlineSeconds | string | `""` | Deadline to start the job, skips execution if job misses it's configured deadline |
 | cronjob.initContainers | list | `[]` | Additional initContainers that can be executed before renovate |
 | cronjob.parallelism | string | `""` | Number of pods to run in parallel |
+| cronjob.commandOverride | list | `[]` | Custom command to run in the container |
+| cronjob.argsOverride | list | `[]` | Custom arguments to run in the container |
 | cronjob.preCommand | string | `""` | Prepend shell commands before renovate runs |
 | cronjob.postCommand | string | `""` | Append shell commands after renovate runs |
 | pod.annotations | object | `{}` | Annotations to set on the pod |
 | pod.labels | object | `{}` | Labels to set on the pod |
 | image.registry | string | `"registry1.dso.mil"` | Repository to pull renovate image from |
 | image.repository | string | `"ironbank/container-hardening-tools/renovate/renovate"` |  |
-| image.tag | string | `"37.302.0"` | Renovate image tag to pull |
+| image.tag | string | `"37.410.2"` | Renovate image tag to pull |
 | image.pullPolicy | string | `"IfNotPresent"` | "IfNotPresent" to pull the image if no image with the specified tag exists on the node, "Always" to always pull the image or "Never" to try and use pre-pulled images |
+| image.useFull | bool | `false` | Set `true` to use the full image. See https://docs.renovatebot.com/getting-started/running/#the-full-image |
 | imagePullSecrets | list | `[{"name":"private-registry"}]` | Secret to use to pull the image from the repository |
 | renovate.existingConfigFile | string | `""` | Custom exiting global renovate config |
 | renovate.config | string | `"{}"` | Inline global renovate config.json |
 | renovate.configEnableHelmTpl | bool | `false` | Use the Helm tpl function on your configuration. See README for how to use this value |
 | renovate.configIsSecret | bool | `true` | Use this to create the renovate-config as a secret instead of a configmap |
 | renovate.securityContext | object | `{"runAsGroup":1001,"runAsNonRoot":true,"runAsUser":1001}` | Renovate Container-level security-context |
-| renovate.persistence | object | `{"cache":{"enabled":false,"storageClass":"","storageSize":"512Mi"}}` | Options related to persistence |
+| renovate.persistence | object | `{"cache":{"enabled":false,"storageClass":"","storageSize":"512Mi","volumeName":""}}` | Options related to persistence |
 | renovate.persistence.cache.enabled | bool | `false` | Allow the cache to persist between runs |
 | renovate.persistence.cache.storageClass | string | `""` | Storage class of the cache PVC |
 | renovate.persistence.cache.storageSize | string | `"512Mi"` | Storage size of the cache PVC |
+| renovate.persistence.cache.volumeName | string | `""` | Existing volume, enables binding the pvc to an existing volume |
 | ssh_config.enabled | bool | `false` | Whether to enable the use and creation of a secret containing .ssh files |
 | ssh_config.id_rsa | string | `""` | Contents of the id_rsa file |
 | ssh_config.id_rsa_pub | string | `""` | Contents of the id_rsa_pub file |
@@ -97,7 +101,6 @@ helm install renovate chart/
 | redis.architecture | string | `"standalone"` | Disable replication by default |
 | redis.auth.enabled | bool | `false` | Don't require a password by default |
 | redis.kubeVersion | string | `""` | Override Kubernetes version for redis chart |
-| apiVersionOverrides.cronjob | string | `"batch/v1"` | String to override apiVersion of cronjob rendered by this helm chart |
 | hostAliases | list | `[]` | Override hostname resolution |
 | securityContext | object | `{"fsGroup":1001,"fsGroupChangePolicy":"OnRootMismatch","runAsGroup":1001,"runAsNonRoot":true,"runAsUser":1001}` | Pod-level security-context |
 | nodeSelector | object | `{}` | Select the node using labels to specify where the cronjob pod should run on |

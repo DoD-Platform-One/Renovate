@@ -1,12 +1,4 @@
-{{- if .Values.apiVersionOverrides.cronjob -}}
-apiVersion: {{ .Values.apiVersionOverrides.cronjob }}
-{{- else if .Capabilities.APIVersions.Has "batch/v1/CronJob" }}
 apiVersion: batch/v1
-{{- else if .Capabilities.APIVersions.Has "batch/v1beta1/CronJob" }}
-apiVersion: batch/v1beta1
-{{- else }}
-  {{- fail "\n\n ERROR: You must have at least batch/v1beta1 to use CronJob" }}
-{{- end }}
 kind: CronJob
 metadata:
   name: {{ include "renovate.fullname" . }}
@@ -98,7 +90,16 @@ spec:
               {{ end }}
               image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
               imagePullPolicy: {{ .Values.image.pullPolicy }}
-              {{- if or .Values.cronjob.preCommand .Values.cronjob.postCommand}}
+              {{- if or .Values.cronjob.commandOverride .Values.cronjob.argsOverride }}
+              {{- if .Values.cronjob.commandOverride }}
+              command:
+                {{- toYaml .Values.cronjob.commandOverride | nindent 16 }}
+              {{- end }}
+              {{- if .Values.cronjob.argsOverride }}
+              args:
+                {{- toYaml .Values.cronjob.argsOverride | nindent 16 }}
+              {{- end }}
+              {{- else if or .Values.cronjob.preCommand .Values.cronjob.postCommand }}
               command: ["/bin/bash", "-c"]
               args:
                 - |

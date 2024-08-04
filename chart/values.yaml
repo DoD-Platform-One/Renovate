@@ -45,6 +45,10 @@ cronjob:
   #   image: INIT_CONTAINER_IMAGE
   # -- Number of pods to run in parallel
   parallelism: ''
+  # -- Custom command to run in the container
+  commandOverride: []
+  # -- Custom arguments to run in the container
+  argsOverride: []
   # -- Prepend shell commands before renovate runs
   preCommand: ''
   # preCommand: |
@@ -68,9 +72,11 @@ image:
   registry: registry1.dso.mil
   repository: ironbank/container-hardening-tools/renovate/renovate
   # -- Renovate image tag to pull
-  tag: 37.302.0
+  tag: 37.410.2
   # -- "IfNotPresent" to pull the image if no image with the specified tag exists on the node, "Always" to always pull the image or "Never" to try and use pre-pulled images
   pullPolicy: IfNotPresent
+  # -- Set `true` to use the full image. See https://docs.renovatebot.com/getting-started/running/#the-full-image
+  useFull: false
 
 # -- Secret to use to pull the image from the repository
 imagePullSecrets:
@@ -114,6 +120,8 @@ renovate:
       storageClass: ""
       # -- Storage size of the cache PVC
       storageSize: "512Mi"
+      # -- Existing volume, enables binding the pvc to an existing volume
+      volumeName: ""
 
 ssh_config:
   # -- Whether to enable the use and creation of a secret containing .ssh files
@@ -244,13 +252,6 @@ redis:
 
   # -- Override Kubernetes version for redis chart
   kubeVersion: ''
-
-# Override APIVersions
-# If you want to template helm charts but cannot access k8s API server
-# you can set api versions here
-apiVersionOverrides:
-  # -- String to override apiVersion of cronjob rendered by this helm chart
-  cronjob: 'batch/v1'
 
 # -- Override hostname resolution
 hostAliases: []

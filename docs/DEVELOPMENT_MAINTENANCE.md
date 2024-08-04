@@ -32,7 +32,7 @@ configIsSecret: true
 
 - Add in standard Big Bang package values
 ```yaml
-domain: bigbang.dev
+domain: bigbang.mil
 istio:
   enabled: false
   mtls:
@@ -117,4 +117,45 @@ packages:
         enabled: "{{ $.Values.networkPolicies.enabled }}"
       istio:
         enabled: "{{ $.Values.istio.enabled }}"
+        
+kyvernoPolicies:
+  values:
+    policies:
+      require-drop-all-capabilities:
+        exclude:
+          any:
+          - resources:
+              namespaces:
+              - renovate
+```
+This will deploy renovate as a cron-job. If you would like to force an immediate run, you can run the following command:
+
+```
+kubectl create job --from=cronjob/renovate renovate-job -n renovate
+```
+
+## Targeting a fork
+For testing purposes, it may be preferrable to target a fork of a respository to avoid opening MRs and issues against the original repository. To do this, you first need to request the ability to create personal projects on repo1. Consult the anchors and government leads to request this access.
+
+Once granted, select a repo that you would like to test that already has a valid `renovate.json` file. Click the "fork" button in the top right of the repo UI and fork it into your personal namespace. Note the address, it should look something like `https://repo1.dso.mil/user.name/project_name`.
+
+On the fork's page, click the "Settings" tab and select "Access Tokens" from the left hand menu.Click the "New Access Token" button and select the "api" scope. Choose a reasonable expiration date and click "Generate token".
+
+With this adresss, we can now configure the renovate chart to target this fork:
+
+```yaml
+config: |
+  {
+    "repositories": ["user.name/project_name"],
+    "platform": 'gitlab',
+    "endpoint": 'https://repo1.dso.mil/api/v4',
+    "token": "<the token you generated>",
+    "autodiscover": false,
+    "hostRules": [{
+      "hostType": "docker",
+      "matchHost": "registry1.dso.mil",
+      "username": "<registry1 user>",
+      "password": "<registry1 secret key>"
+    }]
+  }
 ```

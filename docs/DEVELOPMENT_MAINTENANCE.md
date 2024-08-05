@@ -159,3 +159,8 @@ config: |
     }]
   }
 ```
+
+## Files That Require Integration Testing
+
+Currently, this package does not undergo any sort of integration testing. There is an [open issue in Big Bang](https://repo1.dso.mil/big-bang/bigbang/-/issues/2263) to assess the need for 
+expanding test coverage. This section should be updated as that ticket progresses.

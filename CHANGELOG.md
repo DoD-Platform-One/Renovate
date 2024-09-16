@@ -3,6 +3,13 @@
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [38.77.3-bb.0] - 2024-09-16
+### Updated
+- ghcr.io/renovatebot/renovate - minor - 38.72.1 -> 38.80.0
+- redis - major - 19.6.2-bb.1 -> 20.0.1-bb.1
+- registry1.dso.mil/ironbank/bitnami/analytics/redis-exporter - minor - v1.62.0 -> v1.63.0
+- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate - minor - 38.70.0 -> 38.77.3
+
 ## [38.70.0-bb.0] - 2024-09-09
 ### Updated
 - ghcr.io/renovatebot/renovate - major - 37.412.2 -> 38.72.1
@@ -31,11 +38,11 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 - Ability to create custom network policies through values yaml
 
-## [37.302.0-bb.0] - 2024-03-04 
+## [37.302.0-bb.0] - 2024-03-04
 ### Updated
-- ghcr.io/renovatebot/renovate - minor - 37.279.0 -> 37.302.0 
-- gluon - patch - 0.4.8 -> 0.4.9 
-- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate - minor - 37.279.0 -> 37.302.0 
+- ghcr.io/renovatebot/renovate - minor - 37.279.0 -> 37.302.0
+- gluon - patch - 0.4.8 -> 0.4.9
+- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate - minor - 37.279.0 -> 37.302.0
 
 ## [37.290.0-bb.0] - 2024-04-03
 ### Updated
@@ -100,7 +107,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Added istio custom policy template
 - Added istio `allow-https-port` policy
 - Added istio `allow-namespace-com` policy
-- Addded istio `allow-dns-port` policy 
+- Addded istio `allow-dns-port` policy
 
 ## [37.27.0-bb.0] - 2023-11-14
 ### Changed

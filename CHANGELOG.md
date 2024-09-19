@@ -3,6 +3,11 @@
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [38.87.1-bb.0] - 2024-09-19
+### Updated
+- ghcr.io/renovatebot/renovate - minor - 38.80.0 -> 38.89.1
+- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate - minor - 38.77.3 -> 38.87.1
+
 ## [38.77.3-bb.0] - 2024-09-16
 ### Updated
 - ghcr.io/renovatebot/renovate - minor - 38.72.1 -> 38.80.0

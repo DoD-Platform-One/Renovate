@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: '38.77.3'
+appVersion: '38.87.1'
 description: Universal dependency update tool that fits into your workflows.
 name: renovate
-version: '38.77.3-bb.0'
+version: '38.87.1-bb.0'
 icon: https://docs.renovatebot.com/assets/images/logo.png
 home: https://github.com/renovatebot/renovate
 keywords:
@@ -23,10 +23,10 @@ maintainers:
     email: rhys@arkins.net
 annotations:
   bigbang.dev/applicationVersions: |
-    - Renovate: 38.77.3
+    - Renovate: 38.87.1
   helm.sh/images: |
     - name: renovate
-      image: registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate:38.77.3
+      image: registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate:38.87.1
     - name: redis
       image: registry1.dso.mil/ironbank/bitnami/redis:7.4.0
       condition: redis.enabled
@@ -36,7 +36,7 @@ annotations:
   artifacthub.io/license: AGPL-3.0-only
   artifacthub.io/images: |
     - name: renovate
-      image: ghcr.io/renovatebot/renovate:38.80.0
+      image: ghcr.io/renovatebot/renovate:38.89.1
       platforms:
         - linux/amd64
         - linux/arm64

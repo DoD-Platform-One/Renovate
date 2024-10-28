@@ -3,6 +3,12 @@
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [38.130.0-bb.0] - 2024-10-24
+### Updated
+- ghcr.io/renovatebot/renovate - minor - 38.120.1 -> 38.130.2
+- registry1.dso.mil/ironbank/bitnami/analytics/redis-exporter - minor - v1.64.1 -> v1.65.0
+- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate - minor - 38.117.1 -> 38.130.0
+
 ## [38.117.1-bb.0] - 2024-10-14
 ### Updated
 - ghcr.io/renovatebot/renovate - minor - 38.108.0 -> 38.120.1

@@ -1,6 +1,6 @@
 # renovate
 
-![Version: 39.4.0-bb.0](https://img.shields.io/badge/Version-39.4.0--bb.0-informational?style=flat-square) ![AppVersion: 39.4.0](https://img.shields.io/badge/AppVersion-39.4.0-informational?style=flat-square)
+![Version: 39.15.4-bb.0](https://img.shields.io/badge/Version-39.15.4--bb.0-informational?style=flat-square) ![AppVersion: 39.15.4](https://img.shields.io/badge/AppVersion-39.15.4-informational?style=flat-square)
 
 Universal dependency update tool that fits into your workflows.
 
@@ -64,7 +64,7 @@ helm install renovate chart/
 | pod.labels | object | `{}` | Labels to set on the pod |
 | image.registry | string | `"registry1.dso.mil"` | Repository to pull renovate image from |
 | image.repository | string | `"ironbank/container-hardening-tools/renovate/renovate"` |  |
-| image.tag | string | `"39.4.0"` | Renovate image tag to pull |
+| image.tag | string | `"39.15.4"` | Renovate image tag to pull |
 | image.pullPolicy | string | `"IfNotPresent"` | "IfNotPresent" to pull the image if no image with the specified tag exists on the node, "Always" to always pull the image or "Never" to try and use pre-pulled images |
 | image.useFull | bool | `false` | Set `true` to use the full image. See https://docs.renovatebot.com/getting-started/running/#the-full-image |
 | imagePullSecrets | list | `[{"name":"private-registry"}]` | Secret to use to pull the image from the repository |

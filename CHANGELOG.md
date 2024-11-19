@@ -3,6 +3,12 @@
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [39.15.4-bb.0] - 2024-11-18
+### Updated
+- ghcr.io/renovatebot/renovate - minor - 39.7.1 -> 39.19.1
+- gluon - patch - 0.5.9 -> 0.5.10
+- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate - minor - 39.4.0 -> 39.15.4
+
 ## [39.4.0-bb.0] - 2024-11-07
 ### Updated
 - ghcr.io/renovatebot/renovate - major - 38.142.0 -> 39.7.1

@@ -3,6 +3,10 @@
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [39.122.0-bb.3] - 2025-02-21
+### Updated
+- ghcr.io/renovatebot/renovate - minor - 39.170.0 -> 39.176.4
+
 ## [39.122.0-bb.2] - 2025-02-14
 ### Updated
 - ghcr.io/renovatebot/renovate - minor - 39.161.6 -> 39.170.0

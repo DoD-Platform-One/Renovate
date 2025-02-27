@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # renovate
 
-![Version: 39.122.0-bb.3](https://img.shields.io/badge/Version-39.122.0--bb.3-informational?style=flat-square) ![AppVersion: 39.122.0](https://img.shields.io/badge/AppVersion-39.122.0-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
+![Version: 39.122.0-bb.4](https://img.shields.io/badge/Version-39.122.0--bb.4-informational?style=flat-square) ![AppVersion: 39.122.0](https://img.shields.io/badge/AppVersion-39.122.0-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
 
 Universal dependency update tool that fits into your workflows.
 

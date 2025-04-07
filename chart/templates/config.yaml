@@ -8,6 +8,7 @@ kind: ConfigMap
 {{- end }}
 metadata:
   name: {{ template "renovate.fullname" . }}-config
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "renovate.labels" . | nindent 4 }}
 {{- if .Values.renovate.configIsSecret }}

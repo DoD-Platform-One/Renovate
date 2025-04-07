@@ -3,6 +3,12 @@
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [39.227.2-bb.0] - 2025-04-02
+### Updated
+- ghcr.io/renovatebot/renovate - minor - 39.218.1 -> 39.227.2
+- gluon - patch - 0.5.14 -> 0.5.15
+- redis - minor - 20.6.2-bb.1 -> 20.11.4-bb.1
+
 ## [39.218.1-bb.0] - 2025-03-27
 ### Updated
 - ghcr.io/renovatebot/renovate - minor - 39.180.3 -> 39.218.1

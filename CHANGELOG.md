@@ -3,6 +3,10 @@
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [39.227.2-bb.1] - 2025-04-08
+### Updated
+- added dynamic istiod-egress networkPolicy
+
 ## [39.227.2-bb.0] - 2025-04-02
 ### Updated
 - ghcr.io/renovatebot/renovate - minor - 39.218.1 -> 39.227.2

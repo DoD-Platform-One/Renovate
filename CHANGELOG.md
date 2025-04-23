@@ -3,6 +3,11 @@
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [39.238.1-bb.0] - 2025-04-16
+### Updated
+- ghcr.io/renovatebot/renovate - minor - 39.227.2 -> 39.240.1
+- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate - minor - 39.122.0 -> 39.238.1
+
 ## [39.227.2-bb.1] - 2025-04-08
 ### Updated
 - added dynamic istiod-egress networkPolicy

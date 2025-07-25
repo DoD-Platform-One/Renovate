@@ -1,3 +1,10 @@
+{{- $configFileName := "config.json" }}
+{{- if .Values.renovate.configIsJavaScript }}
+  {{- $configFileName = "config.js" }}
+{{- else if .Values.renovate.configIsJson5 }}
+  {{- $configFileName = "config.json5" }}
+{{- end }}
+
 {{- if not .Values.renovate.existingConfigFile }}
 apiVersion: v1
 {{- if .Values.renovate.configIsSecret }}

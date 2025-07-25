@@ -5,7 +5,7 @@ metadata:
 upstream:
   type: git
   git:
-    commit: 5113cde6af91591835f958e6e1e23e00185db14d
+    commit: 967c7c97ffa5fe5a29cd07126401cbf671622ffe
     repo: https://github.com/renovatebot/helm-charts
     directory: charts/renovate
-    ref: renovate-40.11.2
+    ref: renovate-41.43.0

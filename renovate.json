@@ -7,7 +7,6 @@
     "enabledManagers": ["regex", "helmv3"],
     "ignorePaths": ["chart/charts/**"],
     "labels": ["renovate", "team::Tools & Automation"],
-    "commitMessagePrefix": "SKIP UPDATE CHECK",
     "packageRules": [
         {
             "matchDatasources": ["docker"],
@@ -24,10 +23,20 @@
             "datasourceTemplate": "docker"
         },
         {
+            "fileMatch": ["^chart/values\\.yaml$"],
+            "matchStrings": [
+                        "image:\\s*\n(?:\\s*#.*\\n)?\\s*registry:\\s*(?<registry>[\\w\\.:\\-]+)\\s*\n(?:\\s*#.*\\n)?\\s*repository:\\s*(?<repository>[\\w\\-/\\.]+)\\s*\n(?:\\s*#.*\\n)?\\s*tag:\\s*(?<currentValue>[\\w\\.-]+)"
+            ],
+            "datasourceTemplate": "docker",
+            "depNameTemplate": "{{registry}}/{{repository}}",
+            "versioningTemplate": "docker"
+        },
+        {
             "fileMatch": ["^chart/Chart\\.yaml$"],
             "matchStrings": [
                 "appVersion:\\s+'(?<currentValue>.+)'",
-                "- Renovate:\\s+(?<currentValue>.+)"
+                "- Renovate:\\s+(?<currentValue>.+)",
+                "version:\\s*['\"](?<currentValue>\\d+\\.\\d+\\.\\d+)(?:[-._]?(?<suffix>bb\\.\\d+))['\"]"
             ],
             "depNameTemplate": "registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate",
             "datasourceTemplate": "docker"

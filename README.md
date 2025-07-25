@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # renovate
 
-![Version: 40.58.0-bb.0](https://img.shields.io/badge/Version-40.58.0--bb.0-informational?style=flat-square) ![AppVersion: 40.58.0](https://img.shields.io/badge/AppVersion-40.58.0-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
+![Version: 41.43.0-bb.0](https://img.shields.io/badge/Version-41.43.0--bb.0-informational?style=flat-square) ![AppVersion: 41.43.0](https://img.shields.io/badge/AppVersion-41.43.0-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
 
 Universal dependency update tool that fits into your workflows.
 
@@ -78,7 +78,7 @@ helm install renovate chart/
 | pod.labels | object | `{}` | Labels to set on the pod |
 | image.registry | string | `"registry1.dso.mil"` | Repository to pull renovate image from |
 | image.repository | string | `"ironbank/container-hardening-tools/renovate/renovate"` |  |
-| image.tag | string | `"41.17.2"` | Renovate image tag to pull |
+| image.tag | string | `"41.43.0"` | Renovate image tag to pull |
 | image.pullPolicy | string | `"IfNotPresent"` | "IfNotPresent" to pull the image if no image with the specified tag exists on the node, "Always" to always pull the image or "Never" to try and use pre-pulled images |
 | image.useFull | bool | `false` | Set `true` to use the full image. See https://docs.renovatebot.com/getting-started/running/#the-full-image |
 | imagePullSecrets | list | `[{"name":"private-registry"}]` | Secret to use to pull the image from the repository |
@@ -86,6 +86,7 @@ helm install renovate chart/
 | renovate.config | string | `"{}"` | Inline global renovate config.json |
 | renovate.configEnableHelmTpl | bool | `false` | Use the Helm tpl function on your configuration. See README for how to use this value |
 | renovate.configIsSecret | bool | `true` | Use this to create the renovate-config as a secret instead of a configmap |
+| renovate.configIsJson5 | bool | `false` | Use this to create a config.json5 instead of a config.json |
 | renovate.securityContext | object | `{"runAsGroup":1001,"runAsNonRoot":true,"runAsUser":1001}` | Renovate Container-level security-context |
 | renovate.persistence | object | `{"cache":{"enabled":false,"storageClass":"","storageSize":"512Mi","volumeName":""}}` | Options related to persistence |
 | renovate.persistence.cache.enabled | bool | `false` | Allow the cache to persist between runs |

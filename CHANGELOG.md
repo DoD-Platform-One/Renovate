@@ -3,6 +3,16 @@
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+
+## [41.43.0-bb.0] - 2025-07-25
+
+### Updated
+
+- renovate 41.17.2 -> 41.43.0
+- gluon 0.6.2 -> 0.7.0
+- redis-bb 21.1.11-bb.0 -> 21.2.9-bb.0
+- redis 8.0.2 -> 8.0.3
+
 ## [40.11.2-bb.0] - 2025-05-12
 ### Updated
 - gluon 0.5.15 -> 0.5.19

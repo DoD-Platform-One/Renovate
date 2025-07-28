@@ -3,6 +3,13 @@
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+
+## [41.43.5-bb.0] - 2025-07-28
+
+### Updated
+
+- renovate 41.43.0 -> 41.43.5
+
 ## [41.43.0-bb.1] - 2025-07-28
 
 ### Updated

@@ -3,6 +3,15 @@
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [42.8.0-bb.0] - 2025-08-06
+
+### Updated
+
+- update chart 41.45.0 -> 42.8.0
+- renovate 41.45.0 -> 41.54.0
+- redis 21.2.9-bb.0 -> 21.2.13-bb.0
+- ghcr.io/renovatebot/renovate 41.45.0 -> 41.55.0
+
 ## [41.45.0-bb.0] - 2025-07-30
 
 ### Updated

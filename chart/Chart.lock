@@ -1,9 +1,9 @@
 dependencies:
 - name: redis
   repository: oci://registry1.dso.mil/bigbang
-  version: 21.2.9-bb.0
+  version: 21.2.13-bb.0
 - name: gluon
   repository: oci://registry1.dso.mil/bigbang
   version: 0.7.0
-digest: sha256:35a04f84b7835e0d2b502bc7e520ed1c0d138a29e982188650d96eb07b8a92d8
-generated: "2025-07-23T19:39:48.391761067Z"
+digest: sha256:be9c28ec620df919b3adfedf9d6279c69262d5e954f0a04f155eb16459f86829
+generated: "2025-08-06T06:13:45.315349581Z"

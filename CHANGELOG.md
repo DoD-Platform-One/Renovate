@@ -3,6 +3,15 @@
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [43.32.3-bb.0] - 2025-09-04
+
+### Updated
+
+- ghcr.io/renovatebot/renovate (source) 41.84.0 -> 41.93.3
+- redis (source) 22.0.4-bb.0 -> 22.0.7-bb.0
+- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate (source) 41.82.00 -> 41.93.3
+
+
 ## [42.8.0-bb.1] - 2025-08-26
 
 ### Updated

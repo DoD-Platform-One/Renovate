@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: '42.8.0'
+appVersion: '41.93.3'
 description: Universal dependency update tool that fits into your workflows.
 name: renovate
-version: '42.8.0-bb.1'
+version: '43.32.3-bb.0'
 icon: https://docs.renovatebot.com/assets/images/logo.png
 home: https://github.com/renovatebot/renovate
 keywords:
@@ -24,10 +24,10 @@ maintainers:
 annotations:
   bigbang.dev/maintenanceTrack: bb_integrated
   bigbang.dev/applicationVersions: |
-    - Renovate: 41.82.10
+    - Renovate: 41.93.3
   helm.sh/images: |
     - name: renovate
-      image: registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate:41.82.10
+      image: registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate:41.93.3
     - name: redis
       image: registry1.dso.mil/ironbank/bitnami/redis:8.2.0
       condition: redis.enabled
@@ -37,7 +37,7 @@ annotations:
   artifacthub.io/license: AGPL-3.0-only
   artifacthub.io/images: |
     - name: ghcr.io/renovatebot/renovate:41.55.0
-      image: ghcr.io/renovatebot/renovate:41.84.0
+      image: ghcr.io/renovatebot/renovate:41.93.3
       platforms:
         - linux/amd64
         - linux/arm64
@@ -47,7 +47,7 @@ annotations:
 dependencies:
   - name: redis
     repository: oci://registry1.dso.mil/bigbang
-    version: 22.0.4-bb.0
+    version: 22.0.7-bb.0
     condition: redis.enabled
   - name: gluon
     version: "0.8.4"

@@ -4,10 +4,19 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
 
+## [43.37.4-bb.0] - 2025-09-10
+
+### Updated
+
+- ghcr.io/renovatebot/renovate (source) 41.97.4 -> 41.99.7
+- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate (source) 41.96.1 -> 41.99.6
+
+
 ## [43.34.1-bb.0] - 2025-09-05
 
 ### Updated
 
+- gluon 0.8.4 -> 0.9.0
 - ghcr.io/renovatebot/renovate (source) 41.93.3 -> 41.97.4
 - registry1.dso.mil/ironbank/bitnami/redis (source) 8.2.0 -> 8.2.1
 - registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate (source) 41.93.3 -> 41.96.1

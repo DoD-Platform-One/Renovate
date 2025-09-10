@@ -1,6 +1,6 @@
 # renovate
 
-![Version: 43.34.1](https://img.shields.io/badge/Version-43.34.1-informational?style=flat-square) ![AppVersion: 41.96.1](https://img.shields.io/badge/AppVersion-41.96.1-informational?style=flat-square)
+![Version: 43.37.4](https://img.shields.io/badge/Version-43.37.4-informational?style=flat-square) ![AppVersion: 41.99.6](https://img.shields.io/badge/AppVersion-41.99.6-informational?style=flat-square)
 
 Universal dependency update tool that fits into your workflows.
 
@@ -8,25 +8,18 @@ Universal dependency update tool that fits into your workflows.
 
 ## Installation
 
-### Add Helm repository
-
-```shell
-helm repo add renovate https://docs.renovatebot.com/helm-charts
-helm repo update
-```
-
 ## Install Renovate chart
 
 Using config from a file:
 
 ```bash
-helm install --generate-name --set-file renovate.config=config.json renovate/renovate
+helm install --generate-name --set-file renovate.config=config.json oci://ghcr.io/renovatebot/charts/renovate
 ```
 
 Using config from a string:
 
 ```bash
-helm install --generate-name --set renovate.config='\{\"token\":\"...\"\}' renovate/renovate
+helm install --generate-name --set renovate.config='\{\"token\":\"...\"\}' oci://ghcr.io/renovatebot/charts/renovate
 ```
 
 **NOTE**: `renovate.config` must be a valid Renovate [self-hosted configuration](https://docs.renovatebot.com/self-hosted-configuration/)
@@ -75,8 +68,8 @@ The following table lists the configurable parameters of the chart and the defau
 | image.pullPolicy | string | `"IfNotPresent"` | "IfNotPresent" to pull the image if no image with the specified tag exists on the node, "Always" to always pull the image or "Never" to try and use pre-pulled images |
 | image.registry | string | `"ghcr.io"` | Registry to pull image from |
 | image.repository | string | `"renovatebot/renovate"` | Image name to pull |
-| image.tag | string | `"41.96.1"` | Renovate image tag to pull |
-| image.useFull | bool | `false` | Set `true` to use the full image. See https://docs.renovatebot.com/getting-started/running/#the-full-image |
+| image.tag | string | `"41.99.6"` | Renovate image tag to pull |
+| image.useFull | bool | `false` | Set `true` to use the full image. See <https://docs.renovatebot.com/getting-started/running/#the-full-image> |
 | imagePullSecrets | object | `{}` | Secret to use to pull the image from the repository |
 | nameOverride | string | `""` | Override the name of the chart |
 | nodeSelector | object | `{}` | Select the node using labels to specify where the cronjob pod should run on |
@@ -118,8 +111,8 @@ To speed up execution time of jobs it could be useful to enable persistent cachi
 can make use of the cache that have been build up in previous runs. Set `renovate.persistence.cache.enabled` to true
 to enable this. If necessary, the storageClass can be configured and the storageSize can be set to the preferred value.
 
-**NOTE**: `securityContext.fsGroup` must be set to the correct group ID to use the persistent cache. Without it, renovate
-can't write to the mounted PVC. For the current default user (`ubuntu`), the correct fsGroup is `1000`.
+**HINT**: It is highly recommended to use the redis subchart or SQLite for caching, instead of disk caching.
+Take a look at <https://github.com/renovatebot/renovate/discussions/30525> for more information.
 
 ## Renovate config templating
 

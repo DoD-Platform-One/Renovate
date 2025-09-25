@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # renovate
 
-![Version: 43.37.4-bb.0](https://img.shields.io/badge/Version-43.37.4--bb.0-informational?style=flat-square) ![AppVersion: 41.99.6](https://img.shields.io/badge/AppVersion-41.99.6-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
+![Version: 44.2.3-bb.0](https://img.shields.io/badge/Version-44.2.3--bb.0-informational?style=flat-square) ![AppVersion: 41.125.3](https://img.shields.io/badge/AppVersion-41.125.3-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
 
 Universal dependency update tool that fits into your workflows.
 
@@ -78,7 +78,7 @@ helm install renovate chart/
 | pod.labels | object | `{}` | Labels to set on the pod |
 | image.registry | string | `"registry1.dso.mil"` | Repository to pull renovate image from |
 | image.repository | string | `"ironbank/container-hardening-tools/renovate/renovate"` |  |
-| image.tag | string | `"41.99.6"` | Renovate image tag to pull |
+| image.tag | string | `"41.125.3"` | Renovate image tag to pull |
 | image.pullPolicy | string | `"IfNotPresent"` | "IfNotPresent" to pull the image if no image with the specified tag exists on the node, "Always" to always pull the image or "Never" to try and use pre-pulled images |
 | image.useFull | bool | `false` | Set `true` to use the full image. See <https://docs.renovatebot.com/getting-started/running/#the-full-image> |
 | imagePullSecrets | list | `[{"name":"private-registry"}]` | Secret to use to pull the image from the repository |
@@ -111,11 +111,6 @@ helm install renovate chart/
 | envFrom | list | `[]` | Environment variables to add from existing secrets/configmaps. Uses the keys as variable name |
 | env | object | `{}` | Environment variables to set on the renovate container |
 | envList | list | `[]` | Additional env. Helpful too if you want to use anything other than a `value` source. |
-| redis.enabled | bool | `false` | Enable the Redis subchart? |
-| redis.nameOverride | string | `""` | Override the prefix of the redisHost |
-| redis.architecture | string | `"standalone"` | Disable replication by default |
-| redis.auth.enabled | bool | `false` | Don't require a password by default |
-| redis.kubeVersion | string | `""` | Override Kubernetes version for redis chart |
 | hostAliases | list | `[]` | Override hostname resolution |
 | securityContext | object | `{"fsGroup":1001,"fsGroupChangePolicy":"OnRootMismatch","runAsGroup":1001,"runAsNonRoot":true,"runAsUser":1001}` | Pod-level security-context |
 | nodeSelector | object | `{}` | Select the node using labels to specify where the cronjob pod should run on |

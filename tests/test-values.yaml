@@ -1,2 +1,17 @@
-renovate:
-  config: '{}'
+packages:
+  renovate:
+    namespace:
+      name: renovate
+    helmRelease:
+      namespace: "bigbang"
+    enabled: true
+    sourceType: "git"
+    git:
+      repo: https://repo1.dso.mil/big-bang/product/maintained/renovate.git
+    values:
+      upstream:
+        renovate:
+          config: | 
+            {
+              "platform": "gitlab"
+            }

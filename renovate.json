@@ -15,7 +15,7 @@
     ],
     "labels": [
         "renovate",
-        "team::Tools & Automation"
+        "team::Development & Ops"
     ],
     "packageRules": [
         {
@@ -26,6 +26,10 @@
             "registryUrls": [
                 "https://registry1.dso.mil"
             ]
+        },
+        {
+            "matchManagers": ["custom.regex"],
+            "groupName": "Grouped Chart Dependency Updates"
         }
     ],
     "customManagers": [

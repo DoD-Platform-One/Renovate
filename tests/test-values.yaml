@@ -11,7 +11,16 @@ packages:
     values:
       upstream:
         renovate:
+          enabled: true
+          configIsJson5: true
+          configIsSecret: true
           config: | 
             {
-              "platform": "gitlab"
+              "platform": "gitlab",
+              "endpoint": "https://gitlab.dev.bigbang.mil/api/v4",
+              "token": "your-gitlab-renovate-user-token",
+              "autodiscover": "false",
+              "dryRun": true,
+              "printConfig": true,
+              "repositories": ["username/repo", "orgname/repo"]
             }

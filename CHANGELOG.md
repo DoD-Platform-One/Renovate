@@ -3,6 +3,10 @@
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [44.8.3-bb.2] - 2025-10-08
+
+- Fix renovate to consolidate changes into one MR
+
 ## [44.8.3-bb.1] - 2025-10-06
 
 - Migrate renovate to passthrough pattern

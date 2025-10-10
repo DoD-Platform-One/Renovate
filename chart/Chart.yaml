@@ -28,12 +28,6 @@ annotations:
   helm.sh/images: |
     - name: renovate
       image: registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate:41.131.3
-    - name: redis
-      image: registry1.dso.mil/ironbank/bitnami/redis:8.2.1
-      condition: redis.enabled
-    - name: exporter
-      image: registry1.dso.mil/ironbank/bitnami/analytics/redis-exporter:v1.77.0
-      condition: redis.enabled
   artifacthub.io/license: AGPL-3.0-only
   artifacthub.io/images: |
     - name: ghcr.io/renovatebot/renovate:41.131.3

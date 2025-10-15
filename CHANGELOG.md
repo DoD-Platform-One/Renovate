@@ -3,11 +3,27 @@
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+
+## [44.15.1-bb.0] - 2025-10-08
+
+### Updated
+
+- update chart 44.8.3 -> 44.15.1
+- ghcr.io/renovatebot/renovate (source) 41.131.5 -> 41.143.1
+- registry1.dso.mil/ironbank/bitnami/analytics/redis-exporter (source) 1.77.0 -> 1.78.0
+- update gluon 0.9.2 -> 0.9.3
+- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate (source) 41.131.3 -> 41.141.0
+
+
 ## [44.8.3-bb.2] - 2025-10-08
+
+### Updated
 
 - Fix renovate to consolidate changes into one MR
 
 ## [44.8.3-bb.1] - 2025-10-06
+
+### Updated
 
 - Migrate renovate to passthrough pattern
 

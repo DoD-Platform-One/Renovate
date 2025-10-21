@@ -4,6 +4,15 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
 
+## [44.15.1-bb.1] - 2025-10-20
+
+### Updated
+
+- ghcr.io/renovatebot/renovate (source) 41.143.1 -> 41.152.9
+- registry1.dso.mil/ironbank/bitnami/analytics/redis-exporter (source) 1.78.0 -> 1.79.0
+- registry1.dso.mil/ironbank/bitnami/redis 8.2.1 -> 8.2.2
+- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate (source) 41.141.0 -> 41.155.0
+
 ## [44.15.1-bb.0] - 2025-10-08
 
 ### Updated

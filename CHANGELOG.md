@@ -4,6 +4,12 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
 
+## [44.15.1-bb.3] - 2025-10-28
+
+### Updated
+
+- ghcr.io/renovatebot/renovate (source) 41.157.1 -> 41.163.1
+- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate (source) 41.157.0 -> 41.159.4
 
 ## [44.15.1-bb.2] - 2025-10-23
 

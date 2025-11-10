@@ -3,15 +3,21 @@
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [45.1.0-bb.0] - 2025-11-10
+
+### Updated
+
+- update chart 44.15.1 -> 45.1.0
+- registry1.dso.mil/ironbank/bitnami/redis 8.2.2 -> 8.2.3
+- ghcr.io/renovatebot/renovate (source) 41.173.0 -> 42.2.0
+- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate (source) 41.171.4 -> 42.0.1
 
 ## [44.15.1-bb.4] - 2025-11-06
 
 ### Updated
 
 - update gluon 0.9.5 -> 0.9.6
-- ghcr.io/renovatebot/renovate (source) 41.163.1 -> 41.173.0
-- registry1.dso.mil/ironbank/bitnami/analytics/redis-exporter (source) 1.79.0 -> 1.80.0
-- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate (source) 41.159.4 -> 41.171.4
+
 
 
 ## [44.15.1-bb.3] - 2025-10-28

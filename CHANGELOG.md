@@ -4,6 +4,16 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
 
+## [45.51.1-bb.0] - 2025-12-16
+
+### Updated
+
+- update chart 45.17.6 -> 45.51.1
+- update gluon 0.9.6 -> 0.9.7
+- ghcr.io/renovatebot/renovate (source) 42.19.7 -> 42.57.1
+- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate (source) 42.19.3 -> 42.54.0
+
+
 ## [45.17.6-bb.0] - 2025-11-20
 
 ### Updated

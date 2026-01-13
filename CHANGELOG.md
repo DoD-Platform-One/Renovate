@@ -4,6 +4,13 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
 
+## [45.60.14-bb.0] - 2025-12-16
+
+### Updated
+
+- update chart 45.51.1 -> 45.60.14
+- ghcr.io/renovatebot/renovate (source) 42.57.1 -> 42.66.14
+
 ## [45.51.1-bb.0] - 2025-12-16
 
 ### Updated

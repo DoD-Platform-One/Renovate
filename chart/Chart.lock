@@ -1,9 +1,9 @@
 dependencies:
 - name: renovate
   repository: https://docs.renovatebot.com/helm-charts
-  version: 45.60.14
+  version: 45.75.3
 - name: gluon
   repository: oci://registry1.dso.mil/bigbang
   version: 0.9.7
-digest: sha256:92b86e61840b13acecbc7009cc3f456269122a8526c74ca01691a60f99fb1836
-generated: "2025-12-30T07:34:16.084360459Z"
+digest: sha256:87093aafb24259edb669a1d0e00040b51a6eef2d7f951c0ee0bce14a27c9e886
+generated: "2026-01-16T07:34:46.330802211Z"

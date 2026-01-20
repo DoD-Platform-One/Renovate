@@ -4,6 +4,16 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
 
+## [45.75.3-bb.0] - 2026-01-16
+
+### Updated
+
+- update chart 45.60.14 -> 45.75.3
+- registry1.dso.mil/ironbank/bitnami/redis 8.2.3 -> 8.4.0
+- ghcr.io/renovatebot/renovate (source) 42.66.14 -> 42.82.3
+- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate (source) 42.54.0 -> 42.80.1
+
+
 ## [45.60.14-bb.0] - 2025-12-16
 
 ### Updated

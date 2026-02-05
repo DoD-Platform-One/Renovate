@@ -4,6 +4,16 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
 
+
+## [45.85.4-bb.0] - 2026-01-26
+
+### Updated
+
+- update renovate chart 45.75.3 -> 45.85.4
+- ghcr.io/renovatebot/renovate (source) 42.82.3 -> 42.92.4
+- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate (source) 42.80.1 -> 42.86.0
+
+
 ## [45.75.3-bb.0] - 2026-01-16
 
 ### Updated

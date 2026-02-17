@@ -5,6 +5,16 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ---
 
 
+## [46.6.4-bb.0] - 2026-02-10
+
+### Updated
+
+- ghcr.io/renovatebot/renovate (source) 42.92.4 -> 43.5.4
+- gluon 0.9.7 -> 0.9.8
+- registry1.dso.mil/ironbank/bitnami/analytics/redis-exporter (source) v1.80.1 -> v1.80.2
+- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate (source) 42.86.0 -> 42.94.4
+- renovate (source) 45.85.4 -> 46.6.4
+
 ## [45.85.4-bb.0] - 2026-01-26
 
 ### Updated

@@ -4,6 +4,14 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
 
+## [46.31.6-bb.0] - 2026-02-27
+
+- registry1.dso.mil/ironbank/bitnami/analytics/redis-exporter (source) v1.80.2 -> v1.81.0
+- registry1.dso.mil/ironbank/container-hardening-tools/renovate/renovate (source) 42.94.4 -> 43.31.7
+- renovate (source) 46.6.4 -> 46.31.6
+- Fix renovate config to properly update values.yaml
+- Update development and maintenance guide. Provide a test override
+- Update bbchanges and network policy documentation
 
 ## [46.6.4-bb.0] - 2026-02-10
 

@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # renovate
 
-![Version: 46.6.4-bb.0](https://img.shields.io/badge/Version-46.6.4--bb.0-informational?style=flat-square) ![AppVersion: 42.94.4](https://img.shields.io/badge/AppVersion-42.94.4-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
+![Version: 46.31.6-bb.0](https://img.shields.io/badge/Version-46.31.6--bb.0-informational?style=flat-square) ![AppVersion: 43.31.7](https://img.shields.io/badge/AppVersion-43.31.7-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
 
 Universal dependency update tool that fits into your workflows.
 
@@ -15,6 +15,7 @@ Universal dependency update tool that fits into your workflows.
 
 This package has no upstream release note links on file. Please add some to [chart/Chart.yaml](chart/Chart.yaml) under `annotations.bigbang.dev/upstreamReleaseNotesMarkdown`.
 Example:
+
 ```yaml
 annotations:
   bigbang.dev/upstreamReleaseNotesMarkdown: |
@@ -64,7 +65,7 @@ helm install renovate chart/
 | networkPolicies.additionalPolicies | list | `[]` |  |
 | upstream | object | Upstream chart values | Values to pass to [the upstream renovate chart](https://github.com/renovatebot/helm-charts/blob/renovate-43.13.0/charts/renovate/values.yaml) |
 | upstream.image.registry | string | `"registry1.dso.mil"` | Repository to pull renovate image from |
-| upstream.image.tag | string | `"42.94.4"` | Renovate image tag to pull |
+| upstream.image.tag | string | `"43.31.7"` | Renovate image tag to pull |
 | upstream.image.pullPolicy | string | `"IfNotPresent"` | "IfNotPresent" to pull the image if no image with the specified tag exists on the node, "Always" to always pull the image or "Never" to try and use pre-pulled images |
 | upstream.image.useFull | bool | `false` | Set `true` to use the full image. See https://docs.renovatebot.com/getting-started/running/#the-full-image |
 | upstream.imagePullSecrets | list | `[{"name":"private-registry"}]` | Secret to use to pull the image from the repository |
@@ -76,4 +77,3 @@ Please see the [contributing guide](./CONTRIBUTING.md) if you are interested in 
 ---
 
 _This file is programatically generated using `helm-docs` and some BigBang-specific templates. The `gluon` repository has [instructions for regenerating package READMEs](https://repo1.dso.mil/big-bang/product/packages/gluon/-/blob/master/docs/bb-package-readme.md)._
-

@@ -4,138 +4,40 @@ In most cases renovate will be ran against this repository and flagging new imag
 
 When new images are identified as available for this chart - we will want to look to the [upstream chart](https://github.com/renovatebot/helm-charts) and identify the tag release for the chart that contains the image versions we want to upgrade to.
 
-Once the appropriate tag is identified, we will utilize kpt for performing the update
+This package uses the passthrough pattern, so overrides needed for the upstream renovate chart will be under the `upstream:` key in [values.yaml](../chart/values.yaml#L37)
 
-```
-kpt pkg update chart/@renovate-${chart.version} --strategy alpha-git-patch
-```
+## Testing new Renovate Version
 
-# Modifications made to the upstream
+Identify a repository with a valid `renovate.json` to execute renovate against. Search for a repo with an active renovate MR that has not been merged yet, and save this information to be used in later steps.
 
-### chart/values.yaml
-- set registry1 image and imagepullsecret
-```yaml
-image:
-  registry: registry1.dso.mil
-  repository: ironbank/container-hardening-tools/renovate/renovate
-  tag: 34.120.0
-  pullPolicy: IfNotPresent
+It is best to test renovate with Gitlab enabled, so you can observe Renovate working and making changes against a repository.
 
-imagePullSecrets:
-  - name: private-registry
-```
-- set to `true` by default to utilize secrets for configs 
-```yaml
-# -- Use this to create the renovate-config as a secret instead of a configmap
-configIsSecret: true
-```
+1. Deploy Bigbang with Gitlab enabled using [renovate-dev-override.yaml](./renovate-dev-override.yaml) (you will edit this file again later). Refer to the [quick-start guide](https://repo1.dso.mil/big-bang/bigbang/-/blob/master/docs/installation/environments/quick-start.md) for instructions. Be sure to reference the [Gitlab Development and Maintenance guide](https://repo1.dso.mil/big-bang/product/packages/gitlab/-/blob/main/docs/DEVELOPMENT_MAINTENANCE.md) for instructions on deploying gitlab
 
-- Add in standard Big Bang package values
-```yaml
-domain: bigbang.mil
-istio:
-  enabled: false
-  mtls:
-    # -- STRICT = Allow only mutual TLS traffic,
-    # PERMISSIVE = Allow both plain text and mutual TLS traffic
-    # PERMISSIVE is required for any action which redeploys pods because STRICT interferes with initContainers
-    # Can be changed to STRICT after all initContainers have finished but will interfere with upgrades/pod deployments that have initContainers
-    mode: PERMISSIVE
-  renovate:
-    enabled: true
-    gateways:
-    - istio-system/public
+1. After Gitlab is deployed, you will want to run the [renovate-dev.sh](https://repo1.dso.mil/big-bang/pipeline-templates/renovate-runner/-/blob/main/dev/renovate-dev.sh) script from the [renovate-runner](https://repo1.dso.mil/big-bang/pipeline-templates/renovate-runner) repository. This script will configure gitlab to run renovate, create necessary PAT tokens, and emulate the repository structure similar to Repo1. For further instructions, refer to the [Testing and Development](https://repo1.dso.mil/big-bang/pipeline-templates/renovate-runner/-/blob/main/dev/TESTING_DEVELOPMENT.md) guide. Select the following options when prompted:
+  
+- "Do you want to import packages for testing?" -> Yes
+- "Do you want to import all packages?" -> Just some
+- Select your chosen package(s) using by moving the cursor next to the package and pressing tab, then hit enter.
+- "Do you want to delete all existing renovate/ironbank branches?" -> Yes
+- "Do you want to revert all packages to previous renovate tag?" -> No (sometimes this reverts to extremely old versions if Yes is chosen)
+- "Do you want to trigger the renovate runner pipeline?" -> No
 
-networkPolicies:
-  enabled: false
-  ingressLabels: 
-    app: istio-ingressgateway
-    istio: ingressgateway
-  # -- IP range of target deployment
-  renovateTargetIpRange: ""
+The script output will also include a line that says `Renovate Bot Token created successfully:`. You will need to copy this PAT token and update [renovate-dev-override.yaml](./renovate-dev-override.yaml#L32) and set this as the value for `token:` in the `config:` section. Be sure to update your credentials for registry1 in subsequent lines so Renovate is able to query the repository for updated images.
 
+1. Run your `helm upgrade` command again to apply the new changes.
+
+1. Once the deployment is successful, trigger a cronjob to run Renovate
+
+```bash
+kubectl create job --from=cronjob/renovate-upstream renovate-upstream-manual -n renovate
 ```
 
-### chart/bigbang/*
-- Add directory for network policies
-- Add peer-authentication resource
+Once the job is successful, log in to Gitlab and search for the newly created MRs. Additionally, you can view the pod logs for the created pod in the `renovate` namespace to see what activity was performed.
 
-### chart/templates/cronjob.yaml
-- Merge this in
-    ```yaml
-    spec:
-      jobTemplate:
-        spec:
-          template:
-            spec:
-              containers:
-                - name: {{ .Chart.Name }}
-                  {{ if .Values.istio.enabled }}
-                  command: ["/bin/sh"]
-                  args:
-                    - -c
-                    - >- 
-                      docker-entrypoint.sh;
-                      x=$(echo $?);
-                      curl -fsI -X POST http://localhost:15020/quitquitquit;
-                      exit $x;
-                  {{ end }}
-    ```
+## Targeting a fork (old method)
 
-# Testing new Renovate Version
-Identify a repository with a valid `renovate.json` to execute renovate against.
-
-Deploy Big Bang and orchestrate this package through the `packages` values as such:
-```yaml
-packages:
-  renovate:
-    enabled: true
-    git:
-      repo: https://repo1.dso.mil/big-bang/product/packages/renovate.git
-      tag: null
-      branch: <branch you are testing>
-    values:
-      redis:
-        enabled: true
-      renovate:
-        configIsSecret: true
-        config: |
-          {
-            "repositories": ["target/repo"],
-            "platform": 'gitlab',
-            "endpoint": 'https://repo1.dso.mil/api/v4',
-            "token": "<repo1 token>",
-            "autodiscover": false,
-            "hostRules": [{
-              "hostType": "docker",
-              "matchHost": "registry1.dso.mil",
-              "username": "<registry1 user>",
-              "password": "<registry1 secret key>"
-            }]
-          }
-      networkPolicies:
-        enabled: "{{ $.Values.networkPolicies.enabled }}"
-      istio:
-        enabled: "{{ $.Values.istio.enabled }}"
-        
-kyvernoPolicies:
-  values:
-    policies:
-      require-drop-all-capabilities:
-        exclude:
-          any:
-          - resources:
-              namespaces:
-              - renovate
-```
-This will deploy renovate as a cron-job. If you would like to force an immediate run, you can run the following command:
-
-```
-kubectl create job --from=cronjob/renovate renovate-job -n renovate
-```
-
-## Targeting a fork
-For testing purposes, it may be preferrable to target a fork of a respository to avoid opening MRs and issues against the original repository. To do this, you first need to request the ability to create personal projects on repo1. Consult the anchors and government leads to request this access.
+For testing purposes, it may be preferable to target a fork of a repository to avoid opening MRs and issues against the original repository. To do this, you first need to request the ability to create personal projects on repo1. Consult the anchors and government leads to request this access.
 
 Once granted, select a repo that you would like to test that already has a valid `renovate.json` file. Click the "fork" button in the top right of the repo UI and fork it into your personal namespace. Note the address, it should look something like `https://repo1.dso.mil/user.name/project_name`.
 
@@ -162,5 +64,4 @@ config: |
 
 ## Files That Require Integration Testing
 
-Currently, this package does not undergo any sort of integration testing. There is an [open issue in Big Bang](https://repo1.dso.mil/big-bang/bigbang/-/issues/2263) to assess the need for 
-expanding test coverage. This section should be updated as that ticket progresses.
+Currently, this package does not undergo any sort of integration testing. There is an [open issue in Renovate](https://repo1.dso.mil/big-bang/product/maintained/renovate/-/issues/57) to assess the need for expanding test coverage. This section should be updated as that ticket progresses.

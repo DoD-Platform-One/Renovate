@@ -1,0 +1,48 @@
+istiod:
+  enabled: true
+istioCRDs:
+  enabled: true
+istioGateway:
+  enabled: true
+packages:
+  renovate:
+    enabled: true
+    git:
+      repo: https://repo1.dso.mil/big-bang/product/packages/renovate.git
+      tag: null
+      branch: "renovate/ironbank"
+    values:
+      redis:
+        enabled: false
+        architecture: standalone
+      networkPolicies:
+        enabled: false
+      upstream:
+        env:
+          LOG_LEVEL: "debug"
+        renovate:
+            configIsJson5: true
+            configIsSecret: true
+            config: |
+              {
+                "platform": "gitlab",
+                "endpoint": "https://gitlab.dev.bigbang.mil/api/v4",
+                "token": "generate-a-pat-token-with-api-and-user-read-access",
+                "autodiscover": true,
+                "hostRules": [{
+                  "hostType": "docker",
+                  "matchHost": "registry1.dso.mil",
+                  "username": "your-harbor-username",
+                  "password": "your-harbor-password"
+                }]
+              }
+        
+kyvernoPolicies:
+  values:
+    policies:
+      require-drop-all-capabilities:
+        exclude:
+          any:
+          - resources:
+              namespaces:
+              - renovate
